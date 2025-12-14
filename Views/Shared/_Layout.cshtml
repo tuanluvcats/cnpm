@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hệ Thống Đặt Sân Bóng</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header class="main-header">
+        <div class="container-custom">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="logo-brand">
+                    <div class="logo-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <span>Sân Bóng Pro</span>
+                </a>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm sân bóng...">
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+                
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="/">Trang Chủ</a></li>
+                        <li><a href="/DatSan/Create">Đặt Sân</a></li>
+                        <li><a href="/Home/About">Giới Thiệu</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    @if (Context.Session.GetString("UserName") != null)
+                    {
+                        <div class="user-menu">
+                            @if (Context.Session.GetString("Role") == "Admin")
+                            {
+                                <a href="/Admin/Index" class="btn-signin">
+                                    <i class="fas fa-user-shield"></i> Admin
+                                </a>
+                            }
+                            else if (Context.Session.GetString("Role") == "NhanVien")
+                            {
+                                <a href="/DatSan/Index" class="btn-signin">
+                                    <i class="fas fa-tasks"></i> Quản Lý
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="/Home/LichSuDatSan" class="btn-signin">
+                                    <i class="fas fa-history"></i> Lịch Sử
+                                </a>
+                            }
+                            <span class="user-name">
+                                <i class="fas fa-user-circle"></i> @Context.Session.GetString("UserName")
+                            </span>
+                            <a href="/Account/Logout" class="btn-logout">
+                                <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login" class="btn-signin">Đăng Nhập</a>
+                        <a href="/Account/Register" class="btn-register">Đăng Ký</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container-custom" style="margin-top: 2rem; min-height: calc(100vh - 300px);">
+        @RenderBody()
+    </div>
+
+    <footer class="mt-5 py-4" style="background: #1f2937; color: #9ca3af;">
+        <div class="container-custom">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="logo-icon me-2">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h5 style="color: white; margin: 0;">Sân Bóng Pro</h5>
+                    </div>
+                    <p style="font-size: 0.9rem;">Hệ thống sân bóng chuyên nghiệp, phục vụ tận tâm 24/7.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 style="color: white;">Liên Hệ</h6>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> 039 456 0224</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> contact@sanbongpro.vn</p>
+                    <p style="font-size: 0.9rem;"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 style="color: white;">Theo Dõi Chúng Tôi</h6>
+                    <div class="d-flex gap-3 mt-2">
+                        <a href="#" style="color: #9ca3af; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #9ca3af; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #9ca3af; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #9ca3af; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-3 mt-3" style="border-top: 1px solid #374151; font-size: 0.9rem;">
+                &copy; 2025 Sân Bóng Pro. All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            $.get('/Cart/GetCartCount', function(count) {
+                $('#cartBadge').text(count);
+            });
+        }
+        
+        // Load cart count on page load
+        $(document).ready(function() {
+            updateCartCount();
+        });
+        
+        function addToCart(maThuoc) {
+            $.post('/Cart/ThemVaoGio', { maSP: maThuoc, soLuong: 1 }, function(res) {
+                if(res.success) {
+                    alert(res.message);
+                    // Update cart count after adding
+                    updateCartCount();
+                } else {
+                    // Chuyển thẳng đến trang đăng nhập nếu chưa đăng nhập
+                    window.location.href = '/Account/Login';
+                }
+            });
+        }
+        
+        // Search functionality
+        let searchTimeout;
+        $('#searchInput').on('input', function() {
+            clearTimeout(searchTimeout);
+            const keyword = $(this).val().trim();
+            
+            if (keyword.length < 2) {
+                $('#searchResults').removeClass('show').html('');
+                return;
+            }
+            
+            searchTimeout = setTimeout(function() {
+                $.get('/Home/SearchProducts', { keyword: keyword }, function(products) {
+                    if (products && products.length > 0) {
+                        let html = '';
+                        products.forEach(function(product) {
+                            html += `
+                                <a href="/Home/ChiTietSanPham/${product.maThuoc}" class="search-item">
+                                    <img src="/img/${product.anh}" alt="${product.tenThuoc}" onerror="this.src='https://via.placeholder.com/50'">
+                                    <div class="search-item-info">
+                                        <div class="search-item-name">${product.tenThuoc}</div>
+                                        <div class="search-item-price">${product.gia.toLocaleString('vi-VN')} đ</div>
+                                    </div>
+                                </a>
+                            `;
+                        });
+                        $('#searchResults').html(html).addClass('show');
+                    } else {
+                        $('#searchResults').html('<div style="padding: 1rem; text-align: center; color: #9ca3af;">Không tìm thấy sản phẩm</div>').addClass('show');
+                    }
+                });
+            }, 300);
+        });
+        
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.search-container').length) {
+                $('#searchResults').removeClass('show');
+            }
+        });
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

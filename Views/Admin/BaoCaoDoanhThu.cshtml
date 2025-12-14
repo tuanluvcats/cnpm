@@ -1,0 +1,176 @@
+@{
+    ViewData["Title"] = "Báo Cáo Doanh Thu";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2><i class="bi bi-graph-up"></i> Báo Cáo Doanh Thu</h2>
+    <hr />
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">Tháng</label>
+                    <select name="thang" class="form-select">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option value="@i" selected="@(i == ViewBag.Thang)">Tháng @i</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Năm</label>
+                    <select name="nam" class="form-select">
+                        @for (int y = DateTime.Now.Year; y >= DateTime.Now.Year - 5; y--)
+                        {
+                            <option value="@y" selected="@(y == ViewBag.Nam)">@y</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i> Xem Báo Cáo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-white bg-success" style="cursor: pointer;" onclick="toggleChart()">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="bi bi-currency-dollar"></i> Doanh Thu Tháng @ViewBag.Thang/@ViewBag.Nam
+                        <small class="float-end" style="font-size: 0.8rem;"><i class="bi bi-bar-chart"></i> Click để xem chi tiết</small>
+                    </h5>
+                    <h2 class="display-4">@ViewBag.DoanhThu.ToString("N0") VNĐ</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div id="chartSection" class="mt-4" style="display: none;">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="bi bi-graph-up"></i> Biểu Đồ Doanh Thu Theo Ngày</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="revenueChart" height="80"></canvas>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5><i class="bi bi-table"></i> Chi Tiết Doanh Thu Theo Ngày</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Doanh Thu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.DailyRevenue != null)
+                            {
+                                @foreach (var item in ViewBag.DailyRevenue)
+                                {
+                                    <tr>
+                                        <td>Ngày @item.Day/@ViewBag.Thang/@ViewBag.Nam</td>
+                                        <td class="text-success fw-bold">@item.Total.ToString("N0") VNĐ</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        let chart = null;
+
+        function toggleChart() {
+            const chartSection = document.getElementById('chartSection');
+            if (chartSection.style.display === 'none') {
+                chartSection.style.display = 'block';
+                if (!chart) {
+                    createChart();
+                }
+                // Smooth scroll to chart
+                chartSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                chartSection.style.display = 'none';
+            }
+        }
+
+        function createChart() {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            
+            @if (ViewBag.DailyRevenue != null)
+            {
+                @:var dailyData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.DailyRevenue));
+                @:
+                @:var labels = dailyData.map(item => `Ngày ${item.Day}`);
+                @:var data = dailyData.map(item => item.Total);
+                @:
+                @:chart = new Chart(ctx, {
+                @:    type: 'bar',
+                @:    data: {
+                @:        labels: labels,
+                @:        datasets: [{
+                @:            label: 'Doanh Thu (VNĐ)',
+                @:            data: data,
+                @:            backgroundColor: 'rgba(34, 197, 94, 0.5)',
+                @:            borderColor: 'rgb(34, 197, 94)',
+                @:            borderWidth: 2,
+                @:            borderRadius: 5,
+                @:            hoverBackgroundColor: 'rgba(34, 197, 94, 0.8)'
+                @:        }]
+                @:    },
+                @:    options: {
+                @:        responsive: true,
+                @:        maintainAspectRatio: true,
+                @:        plugins: {
+                @:            legend: {
+                @:                display: true,
+                @:                position: 'top'
+                @:            },
+                @:            tooltip: {
+                @:                callbacks: {
+                @:                    label: function(context) {
+                @:                        let label = context.dataset.label || '';
+                @:                        if (label) {
+                @:                            label += ': ';
+                @:                        }
+                @:                        label += new Intl.NumberFormat('vi-VN').format(context.parsed.y) + ' VNĐ';
+                @:                        return label;
+                @:                    }
+                @:                }
+                @:            }
+                @:        },
+                @:        scales: {
+                @:            y: {
+                @:                beginAtZero: true,
+                @:                ticks: {
+                @:                    callback: function(value) {
+                @:                        return new Intl.NumberFormat('vi-VN').format(value);
+                @:                    }
+                @:                }
+                @:            }
+                @:        }
+                @:    }
+                @:});
+            }
+        }
+    </script>
+}

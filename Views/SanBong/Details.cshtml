@@ -1,0 +1,72 @@
+@model global::SanBong.Models.SanBong
+
+@{
+    ViewData["Title"] = "Chi tiết Sân";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2><i class="bi bi-stadium"></i> Chi Tiết Sân Bóng</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Mã Sân</dt>
+                        <dd class="col-sm-9">@Model.MaSan</dd>
+
+                        <dt class="col-sm-3">Tên Sân</dt>
+                        <dd class="col-sm-9">@Model.TenSan</dd>
+
+                        <dt class="col-sm-3">Loại Sân</dt>
+                        <dd class="col-sm-9">@Model.MaLoaiNavigation?.TenLoai</dd>
+
+                        <dt class="col-sm-3">Giá Theo Giờ</dt>
+                        <dd class="col-sm-9">@Model.GiaTheoGio.ToString("N0") VNĐ</dd>
+
+                        <dt class="col-sm-3">Trạng Thái</dt>
+                        <dd class="col-sm-9">
+                            @if (Model.TrangThai == "Hoạt động")
+                            {
+                                <span class="badge bg-success">@Model.TrangThai</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@Model.TrangThai</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-3">Vị Trí</dt>
+                        <dd class="col-sm-9">@Model.ViTri</dd>
+
+                        <dt class="col-sm-3">Mô Tả</dt>
+                        <dd class="col-sm-9">@Model.MoTa</dd>
+
+                        <dt class="col-sm-3">Hình Ảnh</dt>
+                        <dd class="col-sm-9">
+                            @if (!string.IsNullOrEmpty(Model.HinhAnh))
+                            {
+                                <img src="~/img/@Model.HinhAnh" alt="@Model.TenSan" class="img-fluid" style="max-width: 300px;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">Chưa có hình ảnh</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <a asp-action="Edit" asp-route-id="@Model.MaSan" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Chỉnh Sửa
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay Lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

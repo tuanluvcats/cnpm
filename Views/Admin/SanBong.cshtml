@@ -1,0 +1,119 @@
+@model IEnumerable<global::SanBong.Models.SanBong>
+
+@{
+    ViewData["Title"] = "Quản Lý Sân Bóng";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2><i class="fas fa-futbol"></i> Quản Lý Sân Bóng</h2>
+                <a href="/SanBong/Create" class="btn btn-success">
+                    <i class="fas fa-plus-circle"></i> Thêm Sân Mới
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var san in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        @if (!string.IsNullOrEmpty(san.HinhAnh))
+                        {
+                            <img src="~/img/@san.HinhAnh" class="card-img-top" alt="@san.TenSan" style="height: 200px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="fas fa-futbol text-white" style="font-size: 3rem;"></i>
+                            </div>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@san.TenSan</h5>
+                            <p class="card-text">
+                                <i class="fas fa-tags text-primary"></i>
+                                <strong>Loại:</strong> @(san.MaLoaiNavigation != null ? san.MaLoaiNavigation.TenLoai : "N/A")
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-money-bill-wave text-success"></i>
+                                <strong>Giá:</strong> @san.GiaTheoGio.ToString("N0") VNĐ/giờ
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                <strong>Vị trí:</strong> @san.ViTri
+                            </p>
+                            <p class="card-text">
+                                @{
+                                    var statusClass = san.TrangThai switch
+                                    {
+                                        "Hoạt động" => "bg-success",
+                                        "Bảo trì" => "bg-warning text-dark",
+                                        "Ngưng hoạt động" => "bg-danger",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @statusClass">
+                                    <i class="fas fa-circle"></i> @san.TrangThai
+                                </span>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">@san.MoTa</small>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="btn-group w-100" role="group">
+                                <a href="/SanBong/Details/@san.MaSan" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye"></i> Xem
+                                </a>
+                                <a href="/SanBong/Edit/@san.MaSan" class="btn btn-sm btn-outline-warning">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+                                <a href="/SanBong/Delete/@san.MaSan" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i> Xóa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    <i class="fas fa-info-circle"></i> Chưa có sân bóng nào. Hãy thêm sân mới!
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .card {
+            transition: transform 0.2s;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+        }
+        
+        .card-footer {
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .badge {
+            padding: 0.5em 0.8em;
+            font-size: 0.9em;
+        }
+    </style>
+}

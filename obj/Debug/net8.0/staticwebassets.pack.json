@@ -1,0 +1,413 @@
+{
+  "Files": [
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/projectbundle/SanBong.bundle.scp.css",
+      "PackagePath": "staticwebassets/SanBong.bundle.scp.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/landing.css",
+      "PackagePath": "staticwebassets/css/landing.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/layout.css",
+      "PackagePath": "staticwebassets/css/layout.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/layout_admin.css",
+      "PackagePath": "staticwebassets/css/layout_admin.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/reset.css",
+      "PackagePath": "staticwebassets/css/reset.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-144x144.png",
+      "PackagePath": "staticwebassets/favicon/android-icon-144x144.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-192x192.png",
+      "PackagePath": "staticwebassets/favicon/android-icon-192x192.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-36x36.png",
+      "PackagePath": "staticwebassets/favicon/android-icon-36x36.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-48x48.png",
+      "PackagePath": "staticwebassets/favicon/android-icon-48x48.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-72x72.png",
+      "PackagePath": "staticwebassets/favicon/android-icon-72x72.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-96x96.png",
+      "PackagePath": "staticwebassets/favicon/android-icon-96x96.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-114x114.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-114x114.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-120x120.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-120x120.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-144x144.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-144x144.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-152x152.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-152x152.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-180x180.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-180x180.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-57x57.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-57x57.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-60x60.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-60x60.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-72x72.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-72x72.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-76x76.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-76x76.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-precomposed.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon-precomposed.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon.png",
+      "PackagePath": "staticwebassets/favicon/apple-icon.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/browserconfig.xml",
+      "PackagePath": "staticwebassets/favicon/browserconfig.xml"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon-16x16.png",
+      "PackagePath": "staticwebassets/favicon/favicon-16x16.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon-32x32.png",
+      "PackagePath": "staticwebassets/favicon/favicon-32x32.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon-96x96.png",
+      "PackagePath": "staticwebassets/favicon/favicon-96x96.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon.ico",
+      "PackagePath": "staticwebassets/favicon/favicon.ico"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/manifest.json",
+      "PackagePath": "staticwebassets/favicon/manifest.json"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-144x144.png",
+      "PackagePath": "staticwebassets/favicon/ms-icon-144x144.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-150x150.png",
+      "PackagePath": "staticwebassets/favicon/ms-icon-150x150.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-310x310.png",
+      "PackagePath": "staticwebassets/favicon/ms-icon-310x310.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-70x70.png",
+      "PackagePath": "staticwebassets/favicon/ms-icon-70x70.png"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_a1.jpg",
+      "PackagePath": "staticwebassets/img/san_a1.jpg"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_a2.jpg",
+      "PackagePath": "staticwebassets/img/san_a2.jpg"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_b1.jpg",
+      "PackagePath": "staticwebassets/img/san_b1.jpg"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_b2.jpg",
+      "PackagePath": "staticwebassets/img/san_b2.jpg"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_c1.jpg",
+      "PackagePath": "staticwebassets/img/san_c1.jpg"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_vip.jpg",
+      "PackagePath": "staticwebassets/img/san_vip.jpg"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.SanBong.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.SanBong.props",
+      "PackagePath": "build\\SanBong.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.SanBong.props",
+      "PackagePath": "buildMultiTargeting\\SanBong.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SanBong.props",
+      "PackagePath": "buildTransitive\\SanBong.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

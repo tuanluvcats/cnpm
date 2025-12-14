@@ -1,0 +1,802 @@
+@{
+    ViewData["Title"] = "Đặt Sân Bóng";
+}
+
+<style>
+    .booking-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+    .field-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s;
+        cursor: pointer;
+        margin-bottom: 20px;
+        background: white;
+    }
+    .field-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .field-card.selected {
+        border: 2px solid #667eea;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+    .field-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 48px;
+    }
+    .field-info {
+        padding: 20px;
+    }
+    .field-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .field-price {
+        font-size: 24px;
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 5px;
+    }
+    .field-location {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .time-slot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+    .time-slot {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        background: white;
+    }
+    .time-slot:hover {
+        border-color: #667eea;
+        background: #f8f9ff;
+    }
+    .time-slot.selected {
+        border-color: #667eea;
+        background: #667eea;
+        color: white;
+    }
+    .time-slot.booked {
+        background: #f5f5f5;
+        border-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+    }
+    .time-slot .time {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    .time-slot .multiplier {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+    .service-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s;
+        background: white;
+    }
+    .service-card:hover {
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .service-info {
+        flex: 1;
+    }
+    .service-name {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .service-price {
+        color: #667eea;
+        font-weight: 700;
+    }
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .qty-btn {
+        width: 35px;
+        height: 35px;
+        border: 2px solid #667eea;
+        background: white;
+        color: #667eea;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 700;
+        transition: all 0.3s;
+    }
+    .qty-btn:hover {
+        background: #667eea;
+        color: white;
+    }
+    .qty-input {
+        width: 50px;
+        text-align: center;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 5px;
+        font-weight: 700;
+    }
+    .booking-summary {
+        position: sticky;
+        top: 20px;
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .summary-row:last-child {
+        border-bottom: none;
+    }
+    .summary-total {
+        font-size: 24px;
+        font-weight: 700;
+        color: #667eea;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 2px solid #667eea;
+    }
+    .btn-booking {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 700;
+        border-radius: 8px;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .btn-booking:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+    }
+    .date-picker {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .date-picker:focus {
+        border-color: #667eea;
+        outline: none;
+    }
+    .badge-status {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+    .badge-available {
+        background: #d4edda;
+        color: #155724;
+    }
+    .badge-booked {
+        background: #f8d7da;
+        color: #721c24;
+    }
+</style>
+
+<div class="booking-header">
+    <div class="container">
+        <h1 class="text-center mb-2"><i class="fas fa-futbol"></i> Đặt Sân Bóng</h1>
+        <p class="text-center mb-0">Chọn sân, thời gian và dịch vụ yêu thích của bạn</p>
+    </div>
+</div>
+
+<div class="container mb-5">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+
+    <form asp-action="Create" method="post" id="bookingForm">
+        <div class="row">
+            <!-- Left Column: Field Details & Time Slots -->
+            <div class="col-lg-8">
+                <!-- Date Selection -->
+                <div class="section-title">
+                    <i class="fas fa-calendar-alt"></i> Chọn Ngày Sử Dụng
+                </div>
+                <input type="date" class="date-picker" id="ngaySd" name="ngaySd" required min="@DateTime.Now.ToString("yyyy-MM-dd")">
+
+                <!-- Field Details Section -->
+                <div class="section-title mt-4">
+                    <i class="fas fa-futbol"></i> Thông Tin Sân Bóng
+                </div>
+                
+                @{
+                    var selectedField = ViewBag.PreSelectedMaSan != null 
+                        ? (ViewBag.SanBongs as List<global::SanBong.Models.SanBong>)?.FirstOrDefault(s => s.MaSan == ViewBag.PreSelectedMaSan)
+                        : null;
+                }
+
+                @if (selectedField != null)
+                {
+                    <!-- Show Field Details -->
+                    <div class="card" style="border: 2px solid #667eea; border-radius: 12px; overflow: hidden; margin-bottom: 30px;">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                @if (!string.IsNullOrEmpty(selectedField.HinhAnh))
+                                {
+                                    <img src="~/img/@selectedField.HinhAnh" alt="@selectedField.TenSan" style="width: 100%; height: 100%; min-height: 300px; object-fit: cover;">
+                                }
+                                else
+                                {
+                                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 80px;">
+                                        <i class="fas fa-futbol"></i>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body" style="padding: 30px;">
+                                    <h3 style="color: #667eea; font-weight: 700; margin-bottom: 15px;">
+                                        <i class="fas fa-star" style="color: #ffc107;"></i> @selectedField.TenSan
+                                    </h3>
+                                    
+                                    <div style="margin-bottom: 15px;">
+                                        <span class="badge" style="background: #667eea; color: white; padding: 8px 15px; font-size: 14px; border-radius: 20px;">
+                                            @selectedField.MaLoaiNavigation?.TenLoai
+                                        </span>
+                                        <span class="badge badge-success" style="padding: 8px 15px; font-size: 14px; border-radius: 20px; margin-left: 10px;">
+                                            @selectedField.TrangThai
+                                        </span>
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+                                        <div style="font-size: 32px; font-weight: 700; color: #667eea;">
+                                            @selectedField.GiaTheoGio.ToString("N0") VNĐ
+                                            <span style="font-size: 16px; color: #666; font-weight: normal;">/giờ</span>
+                                        </div>
+                                    </div>
+
+                                    <div style="background: #f8f9ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                        <div style="margin-bottom: 10px;">
+                                            <i class="fas fa-map-marker-alt" style="color: #667eea; width: 25px;"></i>
+                                            <strong>Vị trí:</strong> @selectedField.ViTri
+                                        </div>
+                                        <div style="margin-bottom: 10px;">
+                                            <i class="fas fa-info-circle" style="color: #667eea; width: 25px;"></i>
+                                            <strong>Mô tả:</strong> @selectedField.MoTa
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-users" style="color: #667eea; width: 25px;"></i>
+                                            <strong>Loại sân:</strong> @selectedField.MaLoaiNavigation?.TenLoai
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="$('#fieldSelectionModal').modal('show');">
+                                        <i class="fas fa-exchange-alt"></i> Đổi sân khác
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="maSan" name="maSan" value="@selectedField.MaSan" required>
+                }
+                else
+                {
+                    <!-- Show Field Selection Grid -->
+                    <div class="row" id="fieldSelectionGrid">
+                        @foreach (var san in ViewBag.SanBongs as List<global::SanBong.Models.SanBong>)
+                        {
+                            <div class="col-md-6">
+                                <div class="field-card" data-masan="@san.MaSan" data-gia="@san.GiaTheoGio" data-tensan="@san.TenSan" data-vitri="@san.ViTri" data-mota="@san.MoTa" data-loai="@san.MaLoaiNavigation?.TenLoai" data-hinhanh="@san.HinhAnh">
+                                    @if (!string.IsNullOrEmpty(san.HinhAnh))
+                                    {
+                                        <img src="~/img/@san.HinhAnh" alt="@san.TenSan" class="field-image" style="width: 100%; height: 200px; object-fit: cover;">
+                                    }
+                                    else
+                                    {
+                                        <div class="field-image">
+                                            <i class="fas fa-futbol"></i>
+                                        </div>
+                                    }
+                                    <div class="field-info">
+                                        <div class="field-name">@san.TenSan</div>
+                                        <div class="field-price">@san.GiaTheoGio.ToString("N0") VNĐ<span style="font-size: 14px; color: #666;">/giờ</span></div>
+                                        <div class="field-location"><i class="fas fa-map-marker-alt"></i> @san.ViTri</div>
+                                        <div style="color: #666; font-size: 13px;">@san.MoTa</div>
+                                        <span class="badge-status badge-available">Đang hoạt động</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <input type="hidden" id="maSan" name="maSan" required>
+                }
+
+                <!-- Time Slot Selection -->
+                <div class="section-title mt-4">
+                    <i class="fas fa-clock"></i> Chọn Khung Giờ
+                    <label class="float-end" style="font-size: 14px; font-weight: normal;">
+                        <input type="checkbox" id="customTimeToggle" style="margin-right: 5px;">
+                        Chọn giờ tùy chỉnh
+                    </label>
+                </div>
+                
+                <!-- Predefined Time Slots -->
+                <div id="predefinedTimeSlots">
+                    <div class="time-slot-grid">
+                        @foreach (var kg in ViewBag.KhungGios as List<global::SanBong.Models.KhungGio>)
+                        {
+                            <div class="time-slot" data-khunggio="@kg.MaKhungGio" data-heso="@kg.HeSoGia">
+                                <div class="time">@kg.GioBatDau.ToString(@"hh\:mm") - @kg.GioKetThuc.ToString(@"hh\:mm")</div>
+                                <div class="status-badge" style="display:none; margin-top: 5px;">
+                                    <span class="badge bg-danger">Đã được đặt</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <input type="hidden" id="maKhungGio" name="maKhungGio">
+                </div>
+                
+                <!-- Custom Time Selection -->
+                <div id="customTimeSelection" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-clock"></i> Giờ bắt đầu:</label>
+                            <input type="time" id="gioCustom" name="gioCustom" class="form-control" style="border: 2px solid #e0e0e0; border-radius: 8px; padding: 12px;">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fas fa-hourglass-half"></i> Số giờ sử dụng:</label>
+                            <input type="number" id="soGio" name="soGio" min="1" max="8" value="2" class="form-control" style="border: 2px solid #e0e0e0; border-radius: 8px; padding: 12px;">
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-3" style="border-radius: 8px;">
+                        <i class="fas fa-info-circle"></i> Bạn có thể chọn bất kỳ giờ nào từ 06:00 đến 23:00. Giá sẽ được tính theo giá gốc của sân nhân với số giờ sử dụng.
+                    </div>
+                </div>
+
+                <!-- Additional Services -->
+                <div class="section-title mt-4">
+                    <i class="fas fa-plus-circle"></i> Dịch Vụ Thêm (Tùy chọn)
+                </div>
+                @if (ViewBag.DichVus != null)
+                {
+                    @foreach (var dv in ViewBag.DichVus as List<global::SanBong.Models.DichVu>)
+                    {
+                        <div class="service-card">
+                            <div class="service-info">
+                                <div class="service-name"><i class="fas fa-shopping-cart"></i> @dv.TenDv</div>
+                                <div class="service-price">@dv.DonGia.ToString("N0") VNĐ / @dv.DonVi</div>
+                                <small style="color: #999;">Còn lại: @dv.SoLuongTon @dv.DonVi</small>
+                            </div>
+                            <div class="quantity-control">
+                                <button type="button" class="qty-btn qty-minus" data-dvid="@dv.MaDv">-</button>
+                                <input type="number" class="qty-input" data-dvid="@dv.MaDv" data-gia="@dv.DonGia" value="0" min="0" max="@dv.SoLuongTon" readonly>
+                                <button type="button" class="qty-btn qty-plus" data-dvid="@dv.MaDv" data-max="@dv.SoLuongTon">+</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="dichVuIds" value="@dv.MaDv">
+                        <input type="hidden" name="soLuongs" class="service-quantity" data-dvid="@dv.MaDv" value="0">
+                    }
+                }
+
+                <!-- Notes -->
+                <div class="section-title mt-4">
+                    <i class="fas fa-comment-alt"></i> Ghi Chú
+                </div>
+                <textarea class="form-control" id="ghiChu" name="ghiChu" rows="3" placeholder="Nhập ghi chú của bạn (nếu có)..." style="border: 2px solid #e0e0e0; border-radius: 8px;"></textarea>
+            </div>
+
+            <!-- Right Column: Booking Summary -->
+            <div class="col-lg-4">
+                <div class="booking-summary">
+                    <h4 style="font-weight: 700; color: #333; margin-bottom: 20px;"><i class="fas fa-file-invoice-dollar"></i> Tóm Tắt Đặt Sân</h4>
+                    
+                    <div class="summary-row">
+                        <span style="color: #666;">Sân:</span>
+                        <span id="summaryFieldName" style="font-weight: 600;">Chưa chọn</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span style="color: #666;">Ngày:</span>
+                        <span id="summaryDate" style="font-weight: 600;">Chưa chọn</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span style="color: #666;">Giờ:</span>
+                        <span id="summaryTime" style="font-weight: 600;">Chưa chọn</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span style="color: #666;">Giá sân:</span>
+                        <span id="summaryFieldPrice" style="font-weight: 600;">0 VNĐ</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span style="color: #666;">Dịch vụ:</span>
+                        <span id="summaryServicePrice" style="font-weight: 600;">0 VNĐ</span>
+                    </div>
+                    
+                    <div class="summary-total">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>Tổng cộng:</span>
+                            <span id="summaryTotal">0 VNĐ</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-booking">
+                        <i class="fas fa-check-circle"></i> Xác Nhận Đặt Sân
+                    </button>
+                    
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary btn-block mt-2" style="border-radius: 8px;">
+                        <i class="fas fa-times-circle"></i> Hủy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal for changing field -->
+<div class="modal fade" id="fieldSelectionModal" tabindex="-1" role="dialog" aria-labelledby="fieldSelectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h5 class="modal-title" id="fieldSelectionModalLabel"><i class="fas fa-exchange-alt"></i> Chọn Sân Bóng Khác</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity: 1;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    @foreach (var san in ViewBag.SanBongs as List<global::SanBong.Models.SanBong>)
+                    {
+                        <div class="col-md-6 mb-3">
+                            <div class="field-card-modal" data-masan="@san.MaSan" data-gia="@san.GiaTheoGio" data-tensan="@san.TenSan" data-vitri="@san.ViTri" data-mota="@san.MoTa" data-loai="@san.MaLoaiNavigation?.TenLoai" data-hinhanh="@san.HinhAnh" style="cursor: pointer; border: 2px solid #e0e0e0; border-radius: 10px; padding: 15px; transition: all 0.3s;" onclick="selectFieldFromModal(this)">
+                                @if (!string.IsNullOrEmpty(san.HinhAnh))
+                                {
+                                    <img src="~/img/@san.HinhAnh" alt="@san.TenSan" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                                }
+                                else
+                                {
+                                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 150px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 48px; margin-bottom: 15px;">
+                                        <i class="fas fa-futbol"></i>
+                                    </div>
+                                }
+                                <h5 style="font-weight: 700; color: #333; margin-bottom: 10px;">@san.TenSan</h5>
+                                <div style="font-size: 20px; font-weight: 700; color: #667eea; margin-bottom: 5px;">
+                                    @san.GiaTheoGio.ToString("N0") VNĐ<span style="font-size: 14px; color: #666;">/giờ</span>
+                                </div>
+                                <div style="color: #666; font-size: 14px;">
+                                    <i class="fas fa-map-marker-alt"></i> @san.ViTri
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        let selectedField = @(ViewBag.PreSelectedMaSan ?? "null");
+        let selectedTimeSlot = null;
+        let fieldPrice = @(ViewBag.PreSelectedMaSan != null ? ((ViewBag.SanBongs as List<global::SanBong.Models.SanBong>)?.FirstOrDefault(s => s.MaSan == ViewBag.PreSelectedMaSan)?.GiaTheoGio ?? 0) : 0);
+        let multiplier = 1;
+        let isCustomTime = false;
+
+        // Function to select field from modal
+        function selectFieldFromModal(element) {
+            const maSan = $(element).data('masan');
+            const gia = $(element).data('gia');
+            const tenSan = $(element).data('tensan');
+            const viTri = $(element).data('vitri');
+            const moTa = $(element).data('mota');
+            const loai = $(element).data('loai');
+
+            // Update selected field
+            selectedField = maSan;
+            fieldPrice = parseFloat(gia);
+            $('#maSan').val(maSan);
+            $('#summaryFieldName').text(tenSan);
+
+            // Reload page with new field selected
+            window.location.href = '@Url.Action("Create", "DatSan")?maSan=' + maSan;
+        }
+
+        $(document).ready(function() {
+            // Pre-select field name in summary if already selected
+            @if (ViewBag.PreSelectedMaSan != null)
+            {
+                var selectedFieldData = (ViewBag.SanBongs as List<global::SanBong.Models.SanBong>)?.FirstOrDefault(s => s.MaSan == ViewBag.PreSelectedMaSan);
+                if (selectedFieldData != null)
+                {
+                    <text>
+                    $('#summaryFieldName').text('@selectedFieldData.TenSan');
+                    </text>
+                }
+            }
+
+            // Pre-select date if passed
+            @if (ViewBag.PreSelectedNgaySd != null)
+            {
+                <text>
+                $('#ngaySd').val('@ViewBag.PreSelectedNgaySd');
+                $('#ngaySd').change();
+                </text>
+            }
+
+            // Check availability if field is pre-selected
+            if (selectedField) {
+                checkTimeSlotAvailability();
+            }
+
+            // Custom time toggle
+            $('#customTimeToggle').change(function() {
+                isCustomTime = $(this).is(':checked');
+                if (isCustomTime) {
+                    $('#predefinedTimeSlots').slideUp();
+                    $('#customTimeSelection').slideDown();
+                    $('#maKhungGio').removeAttr('required');
+                    selectedTimeSlot = null;
+                    multiplier = 1;
+                } else {
+                    $('#customTimeSelection').slideUp();
+                    $('#predefinedTimeSlots').slideDown();
+                    $('#maKhungGio').attr('required', 'required');
+                }
+                updateSummary();
+            });
+
+            // Custom time change
+            $('#gioCustom, #soGio').on('input change', function() {
+                updateSummary();
+            });
+
+            // Field selection (for non-pre-selected case)
+            $('.field-card').click(function() {
+                $('.field-card').removeClass('selected');
+                $(this).addClass('selected');
+                selectedField = $(this).data('masan');
+                fieldPrice = parseFloat($(this).data('gia'));
+                $('#maSan').val(selectedField);
+                $('#summaryFieldName').text($(this).find('.field-name').text());
+                
+                // Check time slot availability when field and date selected
+                checkTimeSlotAvailability();
+                updateSummary();
+            });
+
+            // Time slot selection
+            $('.time-slot').click(function() {
+                if ($(this).hasClass('booked')) {
+                    alert('Khung giờ này đã được đặt. Vui lòng chọn khung giờ khác!');
+                    return;
+                }
+                
+                $('.time-slot').removeClass('selected');
+                $(this).addClass('selected');
+                selectedTimeSlot = $(this).data('khunggio');
+                multiplier = parseFloat($(this).data('heso'));
+                $('#maKhungGio').val(selectedTimeSlot);
+                $('#summaryTime').text($(this).find('.time').text());
+                updateSummary();
+            });
+
+            // Date selection
+            $('#ngaySd').change(function() {
+                const date = new Date($(this).val());
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                $('#summaryDate').text(date.toLocaleDateString('vi-VN', options));
+                
+                // Check time slot availability when date changed
+                checkTimeSlotAvailability();
+            });
+
+            // Check time slot availability
+            function checkTimeSlotAvailability() {
+                const ngaySd = $('#ngaySd').val();
+                if (!selectedField || !ngaySd) return;
+
+                // Reset all time slots
+                $('.time-slot').removeClass('booked').find('.status-badge').hide();
+
+                // Check each time slot
+                $('.time-slot').each(function() {
+                    const timeSlot = $(this);
+                    const maKhungGio = timeSlot.data('khunggio');
+
+                    $.ajax({
+                        url: '@Url.Action("CheckTimeSlotAvailability", "DatSan")',
+                        type: 'POST',
+                        data: {
+                            maSan: selectedField,
+                            ngaySd: ngaySd,
+                            maKhungGio: maKhungGio,
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function(response) {
+                            if (response.isBooked) {
+                                timeSlot.addClass('booked');
+                                timeSlot.find('.status-badge').show();
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Service quantity controls
+            $('.qty-plus').click(function() {
+                const dvId = $(this).data('dvid');
+                const max = parseInt($(this).data('max'));
+                const input = $(`.qty-input[data-dvid="${dvId}"]`);
+                const currentVal = parseInt(input.val());
+                if (currentVal < max) {
+                    input.val(currentVal + 1);
+                    $(`.service-quantity[data-dvid="${dvId}"]`).val(currentVal + 1);
+                    updateSummary();
+                }
+            });
+
+            $('.qty-minus').click(function() {
+                const dvId = $(this).data('dvid');
+                const input = $(`.qty-input[data-dvid="${dvId}"]`);
+                const currentVal = parseInt(input.val());
+                if (currentVal > 0) {
+                    input.val(currentVal - 1);
+                    $(`.service-quantity[data-dvid="${dvId}"]`).val(currentVal - 1);
+                    updateSummary();
+                }
+            });
+
+            function updateSummary() {
+                let fieldTotal = 0;
+                
+                if (isCustomTime) {
+                    // Calculate for custom time
+                    const soGio = parseInt($('#soGio').val()) || 2;
+                    fieldTotal = fieldPrice * soGio;
+                    
+                    const gioCustom = $('#gioCustom').val();
+                    if (gioCustom) {
+                        const endTime = calculateEndTime(gioCustom, soGio);
+                        $('#summaryTime').text(`${gioCustom} - ${endTime} (${soGio} giờ)`);
+                    } else {
+                        $('#summaryTime').text(`${soGio} giờ (Chưa chọn giờ)`);
+                    }
+                } else {
+                    // Calculate for predefined slots
+                    fieldTotal = fieldPrice * multiplier;
+                }
+                
+                $('#summaryFieldPrice').text(fieldTotal.toLocaleString('vi-VN') + ' VNĐ');
+
+                // Calculate service price
+                let serviceTotal = 0;
+                $('.qty-input').each(function() {
+                    const qty = parseInt($(this).val());
+                    const price = parseFloat($(this).data('gia'));
+                    serviceTotal += qty * price;
+                });
+                $('#summaryServicePrice').text(serviceTotal.toLocaleString('vi-VN') + ' VNĐ');
+
+                // Calculate total
+                const total = fieldTotal + serviceTotal;
+                $('#summaryTotal').text(total.toLocaleString('vi-VN') + ' VNĐ');
+            }
+
+            function calculateEndTime(startTime, hours) {
+                const [h, m] = startTime.split(':').map(Number);
+                const endHour = (h + hours) % 24;
+                return `${String(endHour).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+            }
+
+            // Form validation and submission
+            $('#bookingForm').submit(function(e) {
+                e.preventDefault();
+                
+                if (!selectedField) {
+                    alert('Vui lòng chọn sân bóng!');
+                    return false;
+                }
+                
+                if (!$('#ngaySd').val()) {
+                    alert('Vui lòng chọn ngày sử dụng!');
+                    return false;
+                }
+                
+                if (isCustomTime) {
+                    // Custom time validation
+                    const gioCustom = $('#gioCustom').val();
+                    const soGio = parseInt($('#soGio').val());
+                    
+                    if (!gioCustom) {
+                        alert('Vui lòng chọn giờ bắt đầu!');
+                        return false;
+                    }
+                    
+                    if (!soGio || soGio < 1) {
+                        alert('Vui lòng nhập số giờ sử dụng hợp lệ!');
+                        return false;
+                    }
+                    
+                    // Submit to custom time action
+                    $(this).attr('action', '@Url.Action("CreateCustomTime", "DatSan")');
+                } else {
+                    // Regular time slot validation
+                    if (!selectedTimeSlot) {
+                        alert('Vui lòng chọn khung giờ!');
+                        return false;
+                    }
+                    
+                    // Submit to regular create action
+                    $(this).attr('action', '@Url.Action("Create", "DatSan")');
+                }
+                
+                this.submit();
+            });
+
+            // Initial summary update
+            updateSummary();
+        });
+    </script>
+}

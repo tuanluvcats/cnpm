@@ -1,0 +1,116 @@
+@model IEnumerable<global::SanBong.Models.SanBong>
+
+@{
+    ViewData["Title"] = "Trang chủ - Hệ thống quản lý sân bóng";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-4">Chào mừng đến với hệ thống quản lý sân bóng</h1>
+            <p class="text-center lead">Đặt sân bóng dễ dàng, nhanh chóng và tiện lợi</p>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="mb-4">Sân bóng nổi bật</h2>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var san in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        @if (!string.IsNullOrEmpty(san.HinhAnh))
+                        {
+                            <img src="~/img/@san.HinhAnh" class="card-img-top" alt="@san.TenSan" style="height: 200px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="bi bi-image text-white" style="font-size: 3rem;"></i>
+                            </div>
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@san.TenSan</h5>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="bi bi-tag"></i> 
+                                    @(san.MaLoaiNavigation != null ? san.MaLoaiNavigation.TenLoai : "Chưa xác định")
+                                </small>
+                            </p>
+                            <p class="card-text">
+                                <strong>Giá: </strong>
+                                <span class="text-success">@san.GiaTheoGio.ToString("N0") VNĐ/giờ</span>
+                            </p>
+                            <p class="card-text">
+                                <small>
+                                    <i class="bi bi-info-circle"></i> 
+                                    Trạng thái: 
+                                    <span class="badge @(san.TrangThai == "Hoạt động" ? "bg-success" : "bg-secondary")">
+                                        @san.TrangThai
+                                    </span>
+                                </small>
+                            </p>
+                            <a href="@Url.Action("Create", "DatSan", new { maSan = san.MaSan })" class="btn btn-success w-100">
+                                <i class="bi bi-calendar-check"></i> Đặt Sân
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    <i class="bi bi-info-circle"></i>
+                    <h4>Hiện chưa có sân bóng nào!</h4>
+                    <p>Vui lòng quay lại sau.</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mt-5 mb-5">
+        <div class="col-md-4 mb-3">
+            <div class="card text-center p-4">
+                <div class="card-body">
+                    <i class="bi bi-clock-history text-primary" style="font-size: 3rem;"></i>
+                    <h5 class="card-title mt-3">Đặt sân 24/7</h5>
+                    <p class="card-text">Hệ thống đặt sân trực tuyến hoạt động suốt ngày đêm</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center p-4">
+                <div class="card-body">
+                    <i class="bi bi-credit-card text-success" style="font-size: 3rem;"></i>
+                    <h5 class="card-title mt-3">Thanh toán linh hoạt</h5>
+                    <p class="card-text">Hỗ trợ nhiều phương thức thanh toán tiện lợi</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center p-4">
+                <div class="card-body">
+                    <i class="bi bi-headset text-info" style="font-size: 3rem;"></i>
+                    <h5 class="card-title mt-3">Hỗ trợ tận tình</h5>
+                    <p class="card-text">Đội ngũ chăm sóc khách hàng chuyên nghiệp</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        console.log('Home page loaded successfully');
+    </script>
+}

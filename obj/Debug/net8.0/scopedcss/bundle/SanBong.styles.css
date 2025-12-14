@@ -1,0 +1,329 @@
+/* _content/SanBong/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* PharmaWeb Custom Styles */
+
+*[b-hvxcl376gh] {
+    font-family: 'Poppins', sans-serif;
+}
+
+body[b-hvxcl376gh] {
+    background-color: #f8f9fa;
+}
+
+.main-header[b-hvxcl376gh] {
+    background: #ffffff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.logo-brand[b-hvxcl376gh] {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    gap: 0.5rem;
+}
+
+.logo-brand:hover[b-hvxcl376gh] {
+    color: #1d4ed8;
+}
+
+.logo-icon[b-hvxcl376gh] {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.nav-menu[b-hvxcl376gh] {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu a[b-hvxcl376gh] {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 0;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover[b-hvxcl376gh] {
+    color: #2563eb;
+}
+
+.header-actions[b-hvxcl376gh] {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.btn-signin[b-hvxcl376gh] {
+    background: transparent;
+    border: none;
+    color: #374151;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-signin:hover[b-hvxcl376gh] {
+    color: #2563eb;
+}
+
+.btn-register[b-hvxcl376gh] {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-register:hover[b-hvxcl376gh] {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    color: white;
+}
+
+.user-menu[b-hvxcl376gh] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-name[b-hvxcl376gh] {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.btn-logout[b-hvxcl376gh] {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.btn-logout:hover[b-hvxcl376gh] {
+    background: #dc2626;
+    color: white;
+}
+
+.container-custom[b-hvxcl376gh] {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Sidebar Sticky Styles */
+.sidebar-sticky[b-hvxcl376gh] {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.sidebar-title[b-hvxcl376gh] {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.category-list[b-hvxcl376gh] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item[b-hvxcl376gh] {
+    margin-bottom: 0.5rem;
+}
+
+.category-link[b-hvxcl376gh] {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #4b5563;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.category-link:hover[b-hvxcl376gh] {
+    background: #f3f4f6;
+    color: #2563eb;
+    transform: translateX(5px);
+}
+
+.category-link.active[b-hvxcl376gh] {
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.category-icon[b-hvxcl376gh] {
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.products-section[b-hvxcl376gh] {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Search Bar Styles */
+.search-container[b-hvxcl376gh] {
+    position: relative;
+    margin: 0 1rem;
+}
+
+.search-input[b-hvxcl376gh] {
+    width: 280px;
+    padding: 0.5rem 0.8rem 0.5rem 2.2rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.search-input:focus[b-hvxcl376gh] {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-icon[b-hvxcl376gh] {
+    position: absolute;
+    left: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+.search-results[b-hvxcl376gh] {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-top: 0.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.search-results.show[b-hvxcl376gh] {
+    display: block;
+}
+
+.search-item[b-hvxcl376gh] {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    text-decoration: none;
+    color: #374151;
+    transition: background 0.2s;
+}
+
+.search-item:hover[b-hvxcl376gh] {
+    background: #f9fafb;
+}
+
+.search-item img[b-hvxcl376gh] {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 1rem;
+}
+
+.search-item-info[b-hvxcl376gh] {
+    flex: 1;
+}
+
+.search-item-name[b-hvxcl376gh] {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.search-item-price[b-hvxcl376gh] {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Cart Icon with Badge */
+.cart-icon-container[b-hvxcl376gh] {
+    position: relative;
+    margin-right: 1rem;
+}
+
+.cart-icon[b-hvxcl376gh] {
+    font-size: 1.5rem;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cart-icon:hover[b-hvxcl376gh] {
+    color: #2563eb;
+}
+
+.cart-badge[b-hvxcl376gh] {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}

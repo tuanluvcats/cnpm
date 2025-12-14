@@ -1,0 +1,85 @@
+@model global::SanBong.Models.SanBong
+
+@{
+    ViewData["Title"] = "Thêm Sân Mới";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2><i class="bi bi-plus-circle"></i> Thêm Sân Bóng Mới</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="TenSan" class="form-label"></label>
+                            <input asp-for="TenSan" class="form-control" />
+                            <span asp-validation-for="TenSan" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MaLoai" class="form-label">Loại Sân</label>
+                            <select asp-for="MaLoai" class="form-select">
+                                <option value="">-- Chọn Loại Sân --</option>
+                                @foreach (var loai in ViewBag.LoaiSan as List<global::SanBong.Models.LoaiSan>)
+                                {
+                                    <option value="@loai.MaLoai">@loai.TenLoai</option>
+                                }
+                            </select>
+                            <span asp-validation-for="MaLoai" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="GiaTheoGio" class="form-label"></label>
+                            <input asp-for="GiaTheoGio" class="form-control" type="number" />
+                            <span asp-validation-for="GiaTheoGio" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TrangThai" class="form-label"></label>
+                            <select asp-for="TrangThai" class="form-select">
+                                <option value="Hoạt động">Hoạt động</option>
+                                <option value="Bảo trì">Bảo trì</option>
+                                <option value="Ngưng hoạt động">Ngưng hoạt động</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ViTri" class="form-label"></label>
+                            <input asp-for="ViTri" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MoTa" class="form-label"></label>
+                            <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="HinhAnh" class="form-label"></label>
+                            <input asp-for="HinhAnh" class="form-control" />
+                            <span asp-validation-for="HinhAnh" class="text-danger"></span>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-save"></i> Lưu
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

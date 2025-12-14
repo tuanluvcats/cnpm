@@ -1,0 +1,155 @@
+@model global::SanBong.Models.DatSan
+
+@{
+    ViewData["Title"] = "Chi Tiết Đặt Sân";
+    var isAjax = Context.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+    Layout = isAjax ? null : "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (!isAjax)
+{
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Chi Tiết Đặt Sân</h2>
+    </div>
+}
+
+<div class="@(isAjax ? "" : "container mt-4")">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <div class="card @(isAjax ? "border-0" : "")">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Thông Tin Khách Hàng</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Họ Tên:</dt>
+                        <dd class="col-sm-8">@Model.MaKhNavigation?.HoTen</dd>
+
+                        <dt class="col-sm-4">Điện Thoại:</dt>
+                        <dd class="col-sm-8">@Model.MaKhNavigation?.DienThoai</dd>
+
+                        <dt class="col-sm-4">Email:</dt>
+                        <dd class="col-sm-8">@Model.MaKhNavigation?.Email</dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>Thông Tin Sân</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Tên Sân:</dt>
+                        <dd class="col-sm-8">@Model.MaSanNavigation?.TenSan</dd>
+
+                        <dt class="col-sm-4">Vị Trí:</dt>
+                        <dd class="col-sm-8">@Model.MaSanNavigation?.ViTri</dd>
+
+                        <dt class="col-sm-4">Ngày Sử Dụng:</dt>
+                        <dd class="col-sm-8">@Model.NgaySd.ToString("dd/MM/yyyy")</dd>
+
+                        <dt class="col-sm-4">Khung Giờ:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.MaKhungGioNavigation != null)
+                            {
+                                @Model.MaKhungGioNavigation.GioBatDau.ToString(@"hh\:mm") 
+                                <text> - </text>
+                                @Model.MaKhungGioNavigation.GioKetThuc.ToString(@"hh\:mm")
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <hr />
+
+            @if (Model.ChiTietDichVus != null && Model.ChiTietDichVus.Any())
+            {
+                <h5>Dịch Vụ Thêm</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Dịch Vụ</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var ct in Model.ChiTietDichVus)
+                        {
+                            <tr>
+                                <td>@ct.MaDvNavigation?.TenDv</td>
+                                <td>@ct.SoLuong</td>
+                                <td>@ct.DonGia.ToString("N0") VNĐ</td>
+                                <td>@ct.ThanhTien?.ToString("N0") VNĐ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <hr />
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Ngày Đặt:</dt>
+                        <dd class="col-sm-8">@Model.NgayDat.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                        <dt class="col-sm-4">Trạng Thái:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.TrangThai == "Đã xác nhận")
+                            {
+                                <span class="badge bg-success">@Model.TrangThai</span>
+                            }
+                            else if (Model.TrangThai == "Chờ xác nhận")
+                            {
+                                <span class="badge bg-warning">@Model.TrangThai</span>
+                            }
+                            else if (Model.TrangThai == "Đã hủy")
+                            {
+                                <span class="badge bg-danger">@Model.TrangThai</span>
+                            }
+                            else if (Model.TrangThai == "Hoàn tất")
+                            {
+                                <span class="badge bg-info">@Model.TrangThai</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@Model.TrangThai</span>
+                            }
+                        </dd>
+
+                        @if (!string.IsNullOrEmpty(Model.GhiChu))
+                        {
+                            <dt class="col-sm-4">Ghi Chú:</dt>
+                            <dd class="col-sm-8">@Model.GhiChu</dd>
+                        }
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="alert alert-info">
+                        <h4 class="text-end">Tổng Tiền: @Model.TongTien?.ToString("N0") VNĐ</h4>
+                    </div>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.GhiChu))
+            {
+                <div class="mt-3">
+                    <strong>Ghi Chú:</strong> @Model.GhiChu
+                </div>
+            }
+            
+            @if (!isAjax)
+            {
+                <div class="text-center mt-4">
+                    <a href="@(Context.Session.GetString("Role") == "Admin" || Context.Session.GetString("Role") == "NhanVien" ? "/DatSan/Index" : "/Home/LichSuDatSan")" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay Lại
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

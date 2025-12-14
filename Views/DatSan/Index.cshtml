@@ -1,0 +1,196 @@
+@model IEnumerable<global::SanBong.Models.DatSan>
+
+@{
+    ViewData["Title"] = "Quản Lý Đặt Sân";
+    var isAdmin = Context.Session.GetString("Role") == "Admin";
+    var isNhanVien = Context.Session.GetString("Role") == "NhanVien";
+    
+    if (!isAdmin && !isNhanVien)
+    {
+        Context.Response.Redirect("/Account/Login");
+        return;
+    }
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-clipboard-list"></i> Quản Lý Đặt Sân</h2>
+                <div>
+                    <a href="/" class="btn btn-outline-secondary">
+                        <i class="fas fa-home"></i> Trang Chủ
+                    </a>
+                    @if (isAdmin)
+                    {
+                        <a href="/Admin/Index" class="btn btn-outline-primary">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <ul class="nav nav-tabs mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button">
+                <i class="fas fa-list"></i> Tất Cả (@Model.Count())
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button">
+                <i class="fas fa-clock"></i> Chờ Xác Nhận (@Model.Count(d => d.TrangThai == "Chờ xác nhận"))
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="confirmed-tab" data-bs-toggle="tab" data-bs-target="#confirmed" type="button">
+                <i class="fas fa-check-circle"></i> Đã Xác Nhận (@Model.Count(d => d.TrangThai == "Đã xác nhận"))
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button">
+                <i class="fas fa-flag-checkered"></i> Hoàn Tất (@Model.Count(d => d.TrangThai == "Hoàn tất"))
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- All Bookings -->
+        <div class="tab-pane fade show active" id="all" role="tabpanel">
+            @await Html.PartialAsync("_BookingTable", Model)
+        </div>
+        
+        <!-- Pending Bookings -->
+        <div class="tab-pane fade" id="pending" role="tabpanel">
+            @await Html.PartialAsync("_BookingTable", Model.Where(d => d.TrangThai == "Chờ xác nhận"))
+        </div>
+        
+        <!-- Confirmed Bookings -->
+        <div class="tab-pane fade" id="confirmed" role="tabpanel">
+            @await Html.PartialAsync("_BookingTable", Model.Where(d => d.TrangThai == "Đã xác nhận"))
+        </div>
+        
+        <!-- Completed Bookings -->
+        <div class="tab-pane fade" id="completed" role="tabpanel">
+            @await Html.PartialAsync("_BookingTable", Model.Where(d => d.TrangThai == "Hoàn tất"))
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Xác Nhận Đặt Sân</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn xác nhận đơn đặt sân này?</p>
+                <input type="hidden" id="confirmBookingId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-success" onclick="confirmBooking()">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelModalLabel">Hủy Đặt Sân</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn hủy đơn đặt sân này?</p>
+                <input type="hidden" id="cancelBookingId" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger" onclick="cancelBooking()">Hủy Đặt Sân</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Html.AntiForgeryToken()
+    <script>
+        function showConfirmModal(maDatSan) {
+            $('#confirmBookingId').val(maDatSan);
+            $('#confirmModal').modal('show');
+        }
+
+        function showCancelModal(maDatSan) {
+            $('#cancelBookingId').val(maDatSan);
+            $('#cancelModal').modal('show');
+        }
+
+        function confirmBooking() {
+            var maDatSan = $('#confirmBookingId').val();
+            var maNv = @(Context.Session.GetInt32("MaNV") ?? 0);
+            
+            $.ajax({
+                url: '/DatSan/Confirm',
+                type: 'POST',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                data: {
+                    id: maDatSan,
+                    maNv: maNv,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function(result) {
+                    $('#confirmModal').modal('hide');
+                    if (result.success) {
+                        alert('Xác nhận đơn đặt sân thành công!');
+                        location.reload();
+                    } else {
+                        alert('Lỗi: ' + (result.message || 'Không thể xác nhận đơn'));
+                    }
+                },
+                error: function() {
+                    $('#confirmModal').modal('hide');
+                    alert('Đã xảy ra lỗi. Vui lòng thử lại sau.');
+                }
+            });
+        }
+
+        function cancelBooking() {
+            var maDatSan = $('#cancelBookingId').val();
+            
+            $.ajax({
+                url: '/DatSan/Cancel',
+                type: 'POST',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                data: {
+                    id: maDatSan,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function(result) {
+                    $('#cancelModal').modal('hide');
+                    if (result.success) {
+                        alert('Hủy đơn đặt sân thành công!');
+                        location.reload();
+                    } else {
+                        alert('Lỗi: ' + (result.message || 'Không thể hủy đơn'));
+                    }
+                },
+                error: function() {
+                    $('#cancelModal').modal('hide');
+                    alert('Đã xảy ra lỗi. Vui lòng thử lại sau.');
+                }
+            });
+        }
+
+        function viewDetails(maDatSan) {
+            window.location.href = '/DatSan/Details/' + maDatSan;
+        }
+    </script>
+}

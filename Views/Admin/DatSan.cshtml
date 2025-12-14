@@ -1,0 +1,189 @@
+@model IEnumerable<global::SanBong.Models.DatSan>
+
+@{
+    ViewData["Title"] = "Quản Lý Đặt Sân";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2><i class="bi bi-calendar-check"></i> Quản Lý Đặt Sân</h2>
+    <hr />
+
+    @Html.AntiForgeryToken()
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <!-- Filter -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">Lọc theo trạng thái</label>
+                    <select id="filterStatus" class="form-select">
+                        <option value="">Tất cả</option>
+                        <option value="Chờ xác nhận">Chờ xác nhận</option>
+                        <option value="Đã xác nhận">Đã xác nhận</option>
+                        <option value="Đang sử dụng">Đang sử dụng</option>
+                        <option value="Hoàn tất">Hoàn tất</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="bookingTable">
+                    <thead>
+                        <tr>
+                            <th>Mã ĐS</th>
+                            <th>Khách Hàng</th>
+                            <th>Sân</th>
+                            <th>Ngày SD</th>
+                            <th>Khung Giờ</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Nhân Viên</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var booking in Model)
+                        {
+                            <tr>
+                                <td>@booking.MaDatSan</td>
+                                <td>
+                                    @booking.MaKhNavigation?.HoTen
+                                    <br />
+                                    <small class="text-muted">@booking.MaKhNavigation?.DienThoai</small>
+                                </td>
+                                <td>@booking.MaSanNavigation?.TenSan</td>
+                                <td>@booking.NgaySd.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (booking.MaKhungGioNavigation != null)
+                                    {
+                                        @booking.MaKhungGioNavigation.GioBatDau.ToString(@"hh\:mm")
+                                        <text> - </text>
+                                        @booking.MaKhungGioNavigation.GioKetThuc.ToString(@"hh\:mm")
+                                    }
+                                </td>
+                                <td>@booking.TongTien?.ToString("N0") VNĐ</td>
+                                <td>
+                                    @if (booking.TrangThai == "Chờ xác nhận")
+                                    {
+                                        <span class="badge bg-warning text-dark">@booking.TrangThai</span>
+                                    }
+                                    else if (booking.TrangThai == "Đã xác nhận")
+                                    {
+                                        <span class="badge bg-success">@booking.TrangThai</span>
+                                    }
+                                    else if (booking.TrangThai == "Đang sử dụng")
+                                    {
+                                        <span class="badge bg-primary">@booking.TrangThai</span>
+                                    }
+                                    else if (booking.TrangThai == "Hoàn tất")
+                                    {
+                                        <span class="badge bg-info">@booking.TrangThai</span>
+                                    }
+                                    else if (booking.TrangThai == "Đã hủy")
+                                    {
+                                        <span class="badge bg-danger">@booking.TrangThai</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@booking.TrangThai</span>
+                                    }
+                                </td>
+                                <td>@booking.MaNvNavigation?.HoTen</td>
+                                <td>
+                                    <div class="btn-group-vertical" role="group" style="gap: 3px;">
+                                        <a href="@Url.Action("Details", "DatSan", new { id = booking.MaDatSan })" 
+                                           class="btn btn-sm btn-info" style="white-space: nowrap;">
+                                            <i class="bi bi-eye"></i> Xem
+                                        </a>
+                                        @if (booking.TrangThai == "Chờ xác nhận")
+                                        {
+                                            <button type="button" class="btn btn-sm btn-success" 
+                                                    onclick="updateStatus(@booking.MaDatSan, 'Đã xác nhận')" 
+                                                    style="white-space: nowrap;">
+                                                <i class="bi bi-check-circle"></i> Xác nhận
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                    onclick="updateStatus(@booking.MaDatSan, 'Đã hủy')" 
+                                                    style="white-space: nowrap;">
+                                                <i class="bi bi-x-circle"></i> Hủy
+                                            </button>
+                                        }
+                                        @if (booking.TrangThai == "Đã xác nhận")
+                                        {
+                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                    onclick="updateStatus(@booking.MaDatSan, 'Đang sử dụng')" 
+                                                    style="white-space: nowrap;">
+                                                <i class="bi bi-play-circle"></i> Bắt đầu
+                                            </button>
+                                        }
+                                        @if (booking.TrangThai == "Đang sử dụng")
+                                        {
+                                            <button type="button" class="btn btn-sm btn-info" 
+                                                    onclick="updateStatus(@booking.MaDatSan, 'Hoàn tất')" 
+                                                    style="white-space: nowrap;">
+                                                <i class="bi bi-check-all"></i> Hoàn tất
+                                            </button>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateStatus(mads, trangthai) {
+            if (confirm('Bạn có chắc muốn cập nhật trạng thái?')) {
+                $.ajax({
+                    url: '@Url.Action("CapNhatTrangThai", "Admin")',
+                    type: 'POST',
+                    data: { 
+                        mads: mads, 
+                        trangthai: trangthai,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function(result) {
+                        if (result.success) {
+                            location.reload();
+                        } else {
+                            alert('Có lỗi xảy ra: ' + (result.message || 'Unknown error'));
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Lỗi kết nối: ' + error);
+                        console.error('AJAX Error:', xhr.responseText);
+                    }
+                });
+            }
+        }
+
+        $('#filterStatus').change(function() {
+            var status = $(this).val();
+            if (status === '') {
+                $('#bookingTable tbody tr').show();
+            } else {
+                $('#bookingTable tbody tr').hide();
+                $('#bookingTable tbody tr').filter(function() {
+                    return $(this).find('td:eq(6)').text().indexOf(status) > -1;
+                }).show();
+            }
+        });
+    </script>
+}

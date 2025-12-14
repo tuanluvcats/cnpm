@@ -1,0 +1,103 @@
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using QuanLySanBong.Models;
+
+namespace QuanLySanBong.Controllers
+{
+    [Authorize(Roles = "Admin")]
+    public class AdminController : Controller
+    {
+        // GET: Admin
+        public ActionResult Index()
+        {
+            // TODO: Get dashboard statistics
+            // ViewBag.TongSan = db.SanBongs.Count();
+            // ViewBag.TongKhachHang = db.KhachHangs.Count();
+            // ViewBag.TongNhanVien = db.NhanViens.Count();
+            // ViewBag.TongDatSan = db.DatSans.Count();
+            
+            // Today's statistics
+            // var today = DateTime.Today;
+            // ViewBag.DatSanHomNay = db.DatSans.Count(d => d.NgayDat.Date == today);
+            // ViewBag.DoanhThuHomNay = db.ThanhToans
+            //     .Where(t => t.NgayThanhToan.Date == today)
+            //     .Sum(t => (decimal?)t.SoTien) ?? 0;
+            
+            // This month's statistics
+            // var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+            // ViewBag.DoanhThuThang = db.ThanhToans
+            //     .Where(t => t.NgayThanhToan >= firstDayOfMonth)
+            //     .Sum(t => (decimal?)t.SoTien) ?? 0;
+            
+            // Recent bookings
+            // ViewBag.DatSanGanDay = db.DatSans
+            //     .Include("SanBong")
+            //     .Include("KhachHang")
+            //     .OrderByDescending(d => d.NgayDat)
+            //     .Take(10)
+            //     .ToList();
+            
+            return View();
+        }
+
+        // GET: Admin/ThongKe
+        public ActionResult ThongKe(int? thang, int? nam)
+        {
+            // TODO: Generate statistics report
+            // var thangHienTai = thang ?? DateTime.Now.Month;
+            // var namHienTai = nam ?? DateTime.Now.Year;
+            
+            // var firstDay = new DateTime(namHienTai, thangHienTai, 1);
+            // var lastDay = firstDay.AddMonths(1).AddDays(-1);
+            
+            // Doanh thu theo ngày
+            // var doanhThuTheoNgay = db.ThanhToans
+            //     .Where(t => t.NgayThanhToan >= firstDay && t.NgayThanhToan <= lastDay)
+            //     .GroupBy(t => t.NgayThanhToan.Date)
+            //     .Select(g => new { Ngay = g.Key, DoanhThu = g.Sum(t => t.SoTien) })
+            //     .OrderBy(x => x.Ngay)
+            //     .ToList();
+            
+            // Doanh thu theo sân
+            // var doanhThuTheoSan = db.DatSans
+            //     .Include("SanBong")
+            //     .Where(d => d.NgayDat >= firstDay && d.NgayDat <= lastDay && d.TrangThai == "Hoàn tất")
+            //     .GroupBy(d => d.SanBong.TenSan)
+            //     .Select(g => new { TenSan = g.Key, DoanhThu = g.Sum(d => d.TongTien) })
+            //     .OrderByDescending(x => x.DoanhThu)
+            //     .ToList();
+            
+            // Khách hàng top
+            // var topKhachHang = db.DatSans
+            //     .Include("KhachHang")
+            //     .Where(d => d.NgayDat >= firstDay && d.NgayDat <= lastDay && d.TrangThai == "Hoàn tất")
+            //     .GroupBy(d => new { d.KhachHang.MaKH, d.KhachHang.HoTen })
+            //     .Select(g => new { 
+            //         MaKH = g.Key.MaKH, 
+            //         HoTen = g.Key.HoTen, 
+            //         SoLanDat = g.Count(), 
+            //         TongChiTieu = g.Sum(d => d.TongTien) 
+            //     })
+            //     .OrderByDescending(x => x.TongChiTieu)
+            //     .Take(10)
+            //     .ToList();
+            
+            // ViewBag.Thang = thangHienTai;
+            // ViewBag.Nam = namHienTai;
+            // ViewBag.DoanhThuTheoNgay = doanhThuTheoNgay;
+            // ViewBag.DoanhThuTheoSan = doanhThuTheoSan;
+            // ViewBag.TopKhachHang = topKhachHang;
+            // ViewBag.TongDoanhThu = doanhThuTheoNgay.Sum(x => x.DoanhThu);
+            
+            return View();
+        }
+
+        // GET: Admin/BaoCao
+        public ActionResult BaoCao()
+        {
+            // TODO: Comprehensive reports
+            return View();
+        }
+    }
+}

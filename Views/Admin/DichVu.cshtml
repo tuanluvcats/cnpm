@@ -1,0 +1,333 @@
+@model IEnumerable<global::SanBong.Models.DichVu>
+
+@{
+    ViewData["Title"] = "Quản Lý Dịch Vụ";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2><i class="bi bi-box-seam"></i> Quản Lý Dịch Vụ</h2>
+    <hr />
+
+    @Html.AntiForgeryToken()
+
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+                    <i class="bi bi-plus-circle"></i> Thêm Dịch Vụ
+                </button>
+            </div>
+
+            <div class="row">
+                @foreach (var dv in Model)
+                {
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-box"></i> @dv.TenDv
+                                </h5>
+                                
+                                <div class="mb-2">
+                                    <strong>Mã DV:</strong> <span class="badge bg-secondary">@dv.MaDv</span>
+                                </div>
+
+                                <div class="mb-2">
+                                    <strong>Đơn giá:</strong> 
+                                    <span class="text-success fw-bold">@dv.DonGia.ToString("N0")đ</span>
+                                    @if (!string.IsNullOrEmpty(dv.DonVi))
+                                    {
+                                        <span class="text-muted">/ @dv.DonVi</span>
+                                    }
+                                </div>
+
+                                <div class="mb-2">
+                                    <strong>Tồn kho:</strong> 
+                                    <span id="stock-@dv.MaDv">
+                                        @if (dv.SoLuongTon.HasValue)
+                                        {
+                                            if (dv.SoLuongTon.Value > 50)
+                                            {
+                                                <span class="badge bg-success">@dv.SoLuongTon</span>
+                                            }
+                                            else if (dv.SoLuongTon.Value > 20)
+                                            {
+                                                <span class="badge bg-warning">@dv.SoLuongTon</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">@dv.SoLuongTon</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">N/A</span>
+                                        }
+                                    </span>
+                                </div>
+
+                                @if (!string.IsNullOrEmpty(dv.MoTa))
+                                {
+                                    <div class="mb-2">
+                                        <small class="text-muted">@dv.MoTa</small>
+                                    </div>
+                                }
+
+                                <div class="mt-3">
+                                    <div class="btn-group-vertical w-100" style="gap: 3px;">
+                                        <button class="btn btn-sm btn-outline-primary" 
+                                                onclick="editService(@dv.MaDv, '@dv.TenDv', @dv.DonGia, '@dv.DonVi', '@dv.MoTa', @(dv.SoLuongTon ?? 0))">
+                                            <i class="bi bi-pencil"></i> Sửa
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info" 
+                                                onclick="stockService(@dv.MaDv, '@dv.TenDv')">
+                                            <i class="bi bi-plus-circle"></i> Nhập kho
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" 
+                                                onclick="deleteService(@dv.MaDv, '@dv.TenDv')">
+                                            <i class="bi bi-trash"></i> Xóa
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center">
+                    <i class="bi bi-info-circle"></i> Chưa có dịch vụ nào trong hệ thống.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Add Service Modal -->
+<div class="modal fade" id="addServiceModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Dịch Vụ Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addServiceForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Tên dịch vụ</label>
+                        <input type="text" class="form-control" id="add_tenDv" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Đơn giá (VNĐ)</label>
+                        <input type="number" class="form-control" id="add_donGia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Đơn vị</label>
+                        <input type="text" class="form-control" id="add_donVi" placeholder="chai, lon, đôi...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số lượng tồn</label>
+                        <input type="number" class="form-control" id="add_soLuongTon" value="0">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="add_moTa" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Service Modal -->
+<div class="modal fade" id="editServiceModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa Dịch Vụ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editServiceForm">
+                <input type="hidden" id="edit_maDv">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Tên dịch vụ</label>
+                        <input type="text" class="form-control" id="edit_tenDv" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Đơn giá (VNĐ)</label>
+                        <input type="number" class="form-control" id="edit_donGia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Đơn vị</label>
+                        <input type="text" class="form-control" id="edit_donVi">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số lượng tồn</label>
+                        <input type="number" class="form-control" id="edit_soLuongTon">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="edit_moTa" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Stock Service Modal -->
+<div class="modal fade" id="stockServiceModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nhập Kho: <span id="stock_name"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="stockServiceForm">
+                <input type="hidden" id="stock_maDv">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Số lượng nhập</label>
+                        <input type="number" class="form-control" id="stock_quantity" min="1" value="10" required>
+                        <small class="text-muted">Nhập số lượng dương để tăng kho</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-success">Nhập Kho</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function getToken() {
+            return $('input[name="__RequestVerificationToken"]').val();
+        }
+
+        // Add Service
+        $('#addServiceForm').submit(function(e) {
+            e.preventDefault();
+            
+            var data = {
+                TenDv: $('#add_tenDv').val(),
+                DonGia: parseFloat($('#add_donGia').val()),
+                DonVi: $('#add_donVi').val(),
+                SoLuongTon: parseInt($('#add_soLuongTon').val()),
+                MoTa: $('#add_moTa').val(),
+                __RequestVerificationToken: getToken()
+            };
+
+            $.post('@Url.Action("CreateDichVu", "Admin")', data, function(result) {
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Lỗi: ' + result.message);
+                }
+            });
+        });
+
+        // Edit Service
+        function editService(id, ten, gia, donVi, moTa, ton) {
+            $('#edit_maDv').val(id);
+            $('#edit_tenDv').val(ten);
+            $('#edit_donGia').val(gia);
+            $('#edit_donVi').val(donVi);
+            $('#edit_moTa').val(moTa);
+            $('#edit_soLuongTon').val(ton);
+            $('#editServiceModal').modal('show');
+        }
+
+        $('#editServiceForm').submit(function(e) {
+            e.preventDefault();
+            
+            var data = {
+                MaDv: $('#edit_maDv').val(),
+                TenDv: $('#edit_tenDv').val(),
+                DonGia: parseFloat($('#edit_donGia').val()),
+                DonVi: $('#edit_donVi').val(),
+                SoLuongTon: parseInt($('#edit_soLuongTon').val()),
+                MoTa: $('#edit_moTa').val(),
+                __RequestVerificationToken: getToken()
+            };
+
+            $.post('@Url.Action("EditDichVu", "Admin")', data, function(result) {
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Lỗi: ' + result.message);
+                }
+            });
+        });
+
+        // Stock Service
+        function stockService(id, name) {
+            $('#stock_maDv').val(id);
+            $('#stock_name').text(name);
+            $('#stock_quantity').val(10);
+            $('#stockServiceModal').modal('show');
+        }
+
+        $('#stockServiceForm').submit(function(e) {
+            e.preventDefault();
+            
+            var data = {
+                id: $('#stock_maDv').val(),
+                quantity: parseInt($('#stock_quantity').val()),
+                __RequestVerificationToken: getToken()
+            };
+
+            $.post('@Url.Action("UpdateStockDichVu", "Admin")', data, function(result) {
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Lỗi: ' + result.message);
+                }
+            });
+        });
+
+        // Delete Service
+        function deleteService(id, name) {
+            if (confirm('Bạn có chắc muốn xóa dịch vụ "' + name + '"?')) {
+                $.post('@Url.Action("DeleteDichVu", "Admin")', {
+                    id: id,
+                    __RequestVerificationToken: getToken()
+                }, function(result) {
+                    if (result.success) {
+                        alert(result.message || 'Xóa dịch vụ thành công!');
+                        location.reload();
+                    } else {
+                        alert(result.message || 'Không thể xóa dịch vụ');
+                    }
+                }).fail(function() {
+                    alert('Đã xảy ra lỗi khi xóa dịch vụ');
+                });
+            }
+        }
+    </script>
+}

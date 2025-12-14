@@ -1,0 +1,347 @@
+@model IEnumerable<global::SanBong.Models.NhanVien>
+
+@{
+    ViewData["Title"] = "Quản Lý Nhân Viên";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2><i class="bi bi-person-badge"></i> Quản Lý Nhân Viên</h2>
+    <hr />
+
+    @Html.AntiForgeryToken()
+
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+                    <i class="bi bi-plus-circle"></i> Thêm Nhân Viên
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã NV</th>
+                            <th>Họ Tên</th>
+                            <th>Ngày Sinh</th>
+                            <th>Giới Tính</th>
+                            <th>Điện Thoại</th>
+                            <th>Email</th>
+                            <th>Chức Vụ</th>
+                            <th>Tài Khoản</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var nv in Model)
+                        {
+                            <tr>
+                                <td>@nv.MaNv</td>
+                                <td>
+                                    <strong>@nv.HoTen</strong>
+                                </td>
+                                <td>
+                                    @if (nv.NgaySinh.HasValue)
+                                    {
+                                        @nv.NgaySinh.Value.ToString("dd/MM/yyyy")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                                <td>@nv.GioiTinh</td>
+                                <td>
+                                    <i class="bi bi-telephone"></i> @nv.DienThoai
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(nv.Email))
+                                    {
+                                        <i class="bi bi-envelope"></i>
+                                        @nv.Email
+                                    }
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">@nv.ChucVu</span>
+                                </td>
+                                <td>
+                                    @if (nv.MaTkNavigation != null)
+                                    {
+                                        <span>@nv.MaTkNavigation.TenDangNhap</span>
+                                        <br />
+                                        <small class="text-muted">
+                                            @if (nv.MaTkNavigation.TrangThai == 1)
+                                            {
+                                                <span class="badge bg-success">Hoạt động</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Khóa</span>
+                                            }
+                                        </small>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group-vertical" style="gap: 3px;">
+                                        <button class="btn btn-sm btn-info" style="white-space: nowrap;" 
+                                                onclick="viewEmployee(@nv.MaNv, '@nv.HoTen', '@(nv.NgaySinh?.ToString("yyyy-MM-dd") ?? "")', '@nv.GioiTinh', '@nv.DienThoai', '@nv.Email', '@nv.ChucVu')">
+                                            <i class="bi bi-eye"></i> Xem
+                                        </button>
+                                        <button class="btn btn-sm btn-warning" style="white-space: nowrap;" 
+                                                onclick="editEmployee(@nv.MaNv, '@nv.HoTen', '@(nv.NgaySinh?.ToString("yyyy-MM-dd") ?? "")', '@nv.GioiTinh', '@nv.DienThoai', '@nv.Email', '@nv.ChucVu')">
+                                            <i class="bi bi-pencil"></i> Sửa
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" style="white-space: nowrap;" 
+                                                onclick="deleteEmployee(@nv.MaNv, '@nv.HoTen')">
+                                            <i class="bi bi-trash"></i> Xóa
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center">
+                    <i class="bi bi-info-circle"></i> Chưa có nhân viên nào trong hệ thống.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Nhân Viên Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addEmployeeForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Họ tên</label>
+                        <input type="text" class="form-control" id="add_hoTen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ngày sinh</label>
+                        <input type="date" class="form-control" id="add_ngaySinh">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giới tính</label>
+                        <select class="form-select" id="add_gioiTinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Điện thoại</label>
+                        <input type="tel" class="form-control" id="add_dienThoai" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="add_email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Chức vụ</label>
+                        <input type="text" class="form-control" id="add_chucVu" placeholder="Quản lý, Nhân viên lễ tân...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Employee Modal -->
+<div class="modal fade" id="editEmployeeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa Thông Tin Nhân Viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editEmployeeForm">
+                <input type="hidden" id="edit_maNv">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Họ tên</label>
+                        <input type="text" class="form-control" id="edit_hoTen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ngày sinh</label>
+                        <input type="date" class="form-control" id="edit_ngaySinh">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giới tính</label>
+                        <select class="form-select" id="edit_gioiTinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Điện thoại</label>
+                        <input type="tel" class="form-control" id="edit_dienThoai" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="edit_email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Chức vụ</label>
+                        <input type="text" class="form-control" id="edit_chucVu">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- View Employee Modal -->
+<div class="modal fade" id="viewEmployeeModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông Tin Nhân Viên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <th>Họ tên:</th>
+                        <td id="view_hoTen"></td>
+                    </tr>
+                    <tr>
+                        <th>Ngày sinh:</th>
+                        <td id="view_ngaySinh"></td>
+                    </tr>
+                    <tr>
+                        <th>Giới tính:</th>
+                        <td id="view_gioiTinh"></td>
+                    </tr>
+                    <tr>
+                        <th>Điện thoại:</th>
+                        <td id="view_dienThoai"></td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td id="view_email"></td>
+                    </tr>
+                    <tr>
+                        <th>Chức vụ:</th>
+                        <td id="view_chucVu"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function getToken() {
+            return $('input[name="__RequestVerificationToken"]').val();
+        }
+
+        // Add Employee
+        $('#addEmployeeForm').submit(function(e) {
+            e.preventDefault();
+            
+            var data = {
+                HoTen: $('#add_hoTen').val(),
+                NgaySinh: $('#add_ngaySinh').val() || null,
+                GioiTinh: $('#add_gioiTinh').val(),
+                DienThoai: $('#add_dienThoai').val(),
+                Email: $('#add_email').val(),
+                ChucVu: $('#add_chucVu').val(),
+                __RequestVerificationToken: getToken()
+            };
+
+            $.post('@Url.Action("CreateNhanVien", "Admin")', data, function(result) {
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Lỗi: ' + result.message);
+                }
+            });
+        });
+
+        // View Employee
+        function viewEmployee(id, hoTen, ngaySinh, gioiTinh, dienThoai, email, chucVu) {
+            $('#view_hoTen').text(hoTen);
+            $('#view_ngaySinh').text(ngaySinh ? new Date(ngaySinh).toLocaleDateString('vi-VN') : 'N/A');
+            $('#view_gioiTinh').text(gioiTinh);
+            $('#view_dienThoai').text(dienThoai);
+            $('#view_email').text(email || 'N/A');
+            $('#view_chucVu').text(chucVu || 'N/A');
+            $('#viewEmployeeModal').modal('show');
+        }
+
+        // Edit Employee
+        function editEmployee(id, hoTen, ngaySinh, gioiTinh, dienThoai, email, chucVu) {
+            $('#edit_maNv').val(id);
+            $('#edit_hoTen').val(hoTen);
+            $('#edit_ngaySinh').val(ngaySinh);
+            $('#edit_gioiTinh').val(gioiTinh);
+            $('#edit_dienThoai').val(dienThoai);
+            $('#edit_email').val(email);
+            $('#edit_chucVu').val(chucVu);
+            $('#editEmployeeModal').modal('show');
+        }
+
+        $('#editEmployeeForm').submit(function(e) {
+            e.preventDefault();
+            
+            var data = {
+                MaNv: $('#edit_maNv').val(),
+                HoTen: $('#edit_hoTen').val(),
+                NgaySinh: $('#edit_ngaySinh').val() || null,
+                GioiTinh: $('#edit_gioiTinh').val(),
+                DienThoai: $('#edit_dienThoai').val(),
+                Email: $('#edit_email').val(),
+                ChucVu: $('#edit_chucVu').val(),
+                __RequestVerificationToken: getToken()
+            };
+
+            $.post('@Url.Action("EditNhanVien", "Admin")', data, function(result) {
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Lỗi: ' + result.message);
+                }
+            });
+        });
+
+        // Delete Employee
+        function deleteEmployee(id, name) {
+            if (confirm('Bạn có chắc muốn xóa nhân viên "' + name + '"?')) {
+                $.post('@Url.Action("DeleteNhanVien", "Admin")', {
+                    id: id,
+                    __RequestVerificationToken: getToken()
+                }, function(result) {
+                    if (result.success) {
+                        location.reload();
+                    } else {
+                        alert('Lỗi: ' + result.message);
+                    }
+                });
+            }
+        }
+    </script>
+}
