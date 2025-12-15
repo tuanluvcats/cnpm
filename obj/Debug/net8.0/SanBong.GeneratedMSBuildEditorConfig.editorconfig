@@ -17,119 +17,119 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SanBong
 build_property.RootNamespace = SanBong
-build_property.ProjectDir = /workspaces/cloud_github_codespaces/SanBong/
+build_property.ProjectDir = /workspaces/cnpm/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /workspaces/cloud_github_codespaces/SanBong
+build_property.MSBuildProjectDirectory = /workspaces/cnpm
 build_property._RazorSourceGeneratorDebug = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Account/Login.cshtml]
+[/workspaces/cnpm/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Account/Register.cshtml]
+[/workspaces/cnpm/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/BaoCaoDoanhThu.cshtml]
+[/workspaces/cnpm/Views/Admin/BaoCaoDoanhThu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vQmFvQ2FvRG9hbmhUaHUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/DatSan.cshtml]
+[/workspaces/cnpm/Views/Admin/DatSan.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vRGF0U2FuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/DichVu.cshtml]
+[/workspaces/cnpm/Views/Admin/DichVu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vRGljaFZ1LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/Index.cshtml]
+[/workspaces/cnpm/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/KhachHang.cshtml]
+[/workspaces/cnpm/Views/Admin/KhachHang.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vS2hhY2hIYW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/NhanVien.cshtml]
+[/workspaces/cnpm/Views/Admin/NhanVien.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vTmhhblZpZW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Admin/SanBong.cshtml]
+[/workspaces/cnpm/Views/Admin/SanBong.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vU2FuQm9uZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/DatSan/Create.cshtml]
+[/workspaces/cnpm/Views/DatSan/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGF0U2FuL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/DatSan/Details.cshtml]
+[/workspaces/cnpm/Views/DatSan/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGF0U2FuL0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/DatSan/Index.cshtml]
+[/workspaces/cnpm/Views/DatSan/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGF0U2FuL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/DatSan/_BookingTable.cshtml]
+[/workspaces/cnpm/Views/DatSan/_BookingTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGF0U2FuL19Cb29raW5nVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Home/About.cshtml]
+[/workspaces/cnpm/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Home/Index.cshtml]
+[/workspaces/cnpm/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Home/LichSuDatSan.cshtml]
+[/workspaces/cnpm/Views/Home/LichSuDatSan.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9MaWNoU3VEYXRTYW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/SanBong/Create.cshtml]
+[/workspaces/cnpm/Views/SanBong/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FuQm9uZy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/SanBong/Delete.cshtml]
+[/workspaces/cnpm/Views/SanBong/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FuQm9uZy9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/SanBong/Details.cshtml]
+[/workspaces/cnpm/Views/SanBong/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FuQm9uZy9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/SanBong/Edit.cshtml]
+[/workspaces/cnpm/Views/SanBong/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FuQm9uZy9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/SanBong/Index.cshtml]
+[/workspaces/cnpm/Views/SanBong/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FuQm9uZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Shared/Error.cshtml]
+[/workspaces/cnpm/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Shared/_Layout_Admin.cshtml]
+[/workspaces/cnpm/Views/Shared/_Layout_Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRfQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/workspaces/cnpm/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/_ViewImports.cshtml]
+[/workspaces/cnpm/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/_ViewStart.cshtml]
+[/workspaces/cnpm/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/cloud_github_codespaces/SanBong/Views/Shared/_Layout.cshtml]
+[/workspaces/cnpm/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-hvxcl376gh

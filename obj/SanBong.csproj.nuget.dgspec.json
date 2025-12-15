@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/cloud_github_codespaces/SanBong/SanBong.csproj": {}
+    "/workspaces/cnpm/SanBong.csproj": {}
   },
   "projects": {
-    "/workspaces/cloud_github_codespaces/SanBong/SanBong.csproj": {
+    "/workspaces/cnpm/SanBong.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/cloud_github_codespaces/SanBong/SanBong.csproj",
+        "projectUniqueName": "/workspaces/cnpm/SanBong.csproj",
         "projectName": "SanBong",
-        "projectPath": "/workspaces/cloud_github_codespaces/SanBong/SanBong.csproj",
+        "projectPath": "/workspaces/cnpm/SanBong.csproj",
         "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/cloud_github_codespaces/SanBong/obj/",
+        "outputPath": "/workspaces/cnpm/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/codespace/.nuget/NuGet/NuGet.Config"

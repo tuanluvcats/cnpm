@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SzKJMDi1mNA=",
+  "dgSpecHash": "JCEMOyolJug=",
   "success": true,
-  "projectFilePath": "/workspaces/cloud_github_codespaces/SanBong/SanBong.csproj",
+  "projectFilePath": "/workspaces/cnpm/SanBong.csproj",
   "expectedPackageFiles": [
     "/home/codespace/.nuget/packages/humanizer/2.14.1/humanizer.2.14.1.nupkg.sha512",
     "/home/codespace/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

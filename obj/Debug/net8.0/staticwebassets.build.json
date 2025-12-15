@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QSax2ym3OuH8k0ieSJO/QJl5a9viCcT0c5fbEupd8jA=",
+  "Hash": "IJCSXnsYaEb555j2Ic95O0Si4VLOo6k6bgXOPE9z6pI=",
   "Source": "SanBong",
   "BasePath": "_content/SanBong",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SanBong/wwwroot",
       "Source": "SanBong",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/bundle/SanBong.styles.css",
+      "Identity": "/workspaces/cnpm/obj/Debug/net8.0/scopedcss/bundle/SanBong.styles.css",
       "SourceId": "SanBong",
       "SourceType": "Computed",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/bundle/",
+      "ContentRoot": "/workspaces/cnpm/obj/Debug/net8.0/scopedcss/bundle/",
       "BasePath": "_content/SanBong",
       "RelativePath": "SanBong.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/bundle/SanBong.styles.css"
+      "OriginalItemSpec": "/workspaces/cnpm/obj/Debug/net8.0/scopedcss/bundle/SanBong.styles.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/projectbundle/SanBong.bundle.scp.css",
+      "Identity": "/workspaces/cnpm/obj/Debug/net8.0/scopedcss/projectbundle/SanBong.bundle.scp.css",
       "SourceId": "SanBong",
       "SourceType": "Computed",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/projectbundle/",
+      "ContentRoot": "/workspaces/cnpm/obj/Debug/net8.0/scopedcss/projectbundle/",
       "BasePath": "_content/SanBong",
       "RelativePath": "SanBong.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/workspaces/cloud_github_codespaces/SanBong/obj/Debug/net8.0/scopedcss/projectbundle/SanBong.bundle.scp.css"
+      "OriginalItemSpec": "/workspaces/cnpm/obj/Debug/net8.0/scopedcss/projectbundle/SanBong.bundle.scp.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/landing.css",
+      "Identity": "/workspaces/cnpm/wwwroot/css/landing.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "css/landing.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot/css/landing.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/layout_admin.css",
+      "Identity": "/workspaces/cnpm/wwwroot/css/layout_admin.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "css/layout_admin.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot/css/layout_admin.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/layout.css",
+      "Identity": "/workspaces/cnpm/wwwroot/css/layout.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "css/layout.css",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot/css/layout.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/reset.css",
+      "Identity": "/workspaces/cnpm/wwwroot/css/reset.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "css/reset.css",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot/css/reset.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/css/site.css",
+      "Identity": "/workspaces/cnpm/wwwroot/css/site.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon.ico",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon.ico",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-144x144.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/android-icon-144x144.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/android-icon-144x144.png",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot/favicon/android-icon-144x144.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-192x192.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/android-icon-192x192.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/android-icon-192x192.png",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot/favicon/android-icon-192x192.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-36x36.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/android-icon-36x36.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/android-icon-36x36.png",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot/favicon/android-icon-36x36.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-48x48.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/android-icon-48x48.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/android-icon-48x48.png",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot/favicon/android-icon-48x48.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-72x72.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/android-icon-72x72.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/android-icon-72x72.png",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot/favicon/android-icon-72x72.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/android-icon-96x96.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/android-icon-96x96.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/android-icon-96x96.png",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot/favicon/android-icon-96x96.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-114x114.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-114x114.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-114x114.png",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-114x114.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-120x120.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-120x120.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-120x120.png",
       "AssetKind": "All",
@@ -321,10 +321,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-120x120.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-144x144.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-144x144.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-144x144.png",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-144x144.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-152x152.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-152x152.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-152x152.png",
       "AssetKind": "All",
@@ -359,10 +359,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-152x152.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-180x180.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-180x180.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-180x180.png",
       "AssetKind": "All",
@@ -378,10 +378,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-180x180.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-57x57.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-57x57.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-57x57.png",
       "AssetKind": "All",
@@ -397,10 +397,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-57x57.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-60x60.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-60x60.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-60x60.png",
       "AssetKind": "All",
@@ -416,10 +416,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-60x60.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-72x72.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-72x72.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-72x72.png",
       "AssetKind": "All",
@@ -435,10 +435,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-72x72.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-76x76.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-76x76.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-76x76.png",
       "AssetKind": "All",
@@ -454,10 +454,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-76x76.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon-precomposed.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon-precomposed.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon-precomposed.png",
       "AssetKind": "All",
@@ -473,10 +473,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon-precomposed.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/apple-icon.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/apple-icon.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/apple-icon.png",
       "AssetKind": "All",
@@ -492,10 +492,10 @@
       "OriginalItemSpec": "wwwroot/favicon/apple-icon.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/browserconfig.xml",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/browserconfig.xml",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/browserconfig.xml",
       "AssetKind": "All",
@@ -511,10 +511,10 @@
       "OriginalItemSpec": "wwwroot/favicon/browserconfig.xml"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon-16x16.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/favicon-16x16.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/favicon-16x16.png",
       "AssetKind": "All",
@@ -530,10 +530,10 @@
       "OriginalItemSpec": "wwwroot/favicon/favicon-16x16.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon-32x32.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/favicon-32x32.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/favicon-32x32.png",
       "AssetKind": "All",
@@ -549,10 +549,10 @@
       "OriginalItemSpec": "wwwroot/favicon/favicon-32x32.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon-96x96.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/favicon-96x96.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/favicon-96x96.png",
       "AssetKind": "All",
@@ -568,10 +568,10 @@
       "OriginalItemSpec": "wwwroot/favicon/favicon-96x96.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/favicon.ico",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/favicon.ico",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/favicon.ico",
       "AssetKind": "All",
@@ -587,10 +587,10 @@
       "OriginalItemSpec": "wwwroot/favicon/favicon.ico"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/manifest.json",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/manifest.json",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/manifest.json",
       "AssetKind": "All",
@@ -606,10 +606,10 @@
       "OriginalItemSpec": "wwwroot/favicon/manifest.json"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-144x144.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/ms-icon-144x144.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/ms-icon-144x144.png",
       "AssetKind": "All",
@@ -625,10 +625,10 @@
       "OriginalItemSpec": "wwwroot/favicon/ms-icon-144x144.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-150x150.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/ms-icon-150x150.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/ms-icon-150x150.png",
       "AssetKind": "All",
@@ -644,10 +644,10 @@
       "OriginalItemSpec": "wwwroot/favicon/ms-icon-150x150.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-310x310.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/ms-icon-310x310.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/ms-icon-310x310.png",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot/favicon/ms-icon-310x310.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/favicon/ms-icon-70x70.png",
+      "Identity": "/workspaces/cnpm/wwwroot/favicon/ms-icon-70x70.png",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "favicon/ms-icon-70x70.png",
       "AssetKind": "All",
@@ -682,10 +682,10 @@
       "OriginalItemSpec": "wwwroot/favicon/ms-icon-70x70.png"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_a1.jpg",
+      "Identity": "/workspaces/cnpm/wwwroot/img/san_a1.jpg",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "img/san_a1.jpg",
       "AssetKind": "All",
@@ -701,10 +701,10 @@
       "OriginalItemSpec": "wwwroot/img/san_a1.jpg"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_a2.jpg",
+      "Identity": "/workspaces/cnpm/wwwroot/img/san_a2.jpg",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "img/san_a2.jpg",
       "AssetKind": "All",
@@ -720,10 +720,10 @@
       "OriginalItemSpec": "wwwroot/img/san_a2.jpg"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_b1.jpg",
+      "Identity": "/workspaces/cnpm/wwwroot/img/san_b1.jpg",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "img/san_b1.jpg",
       "AssetKind": "All",
@@ -739,10 +739,10 @@
       "OriginalItemSpec": "wwwroot/img/san_b1.jpg"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_b2.jpg",
+      "Identity": "/workspaces/cnpm/wwwroot/img/san_b2.jpg",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "img/san_b2.jpg",
       "AssetKind": "All",
@@ -758,10 +758,10 @@
       "OriginalItemSpec": "wwwroot/img/san_b2.jpg"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_c1.jpg",
+      "Identity": "/workspaces/cnpm/wwwroot/img/san_c1.jpg",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "img/san_c1.jpg",
       "AssetKind": "All",
@@ -777,10 +777,10 @@
       "OriginalItemSpec": "wwwroot/img/san_c1.jpg"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/img/san_vip.jpg",
+      "Identity": "/workspaces/cnpm/wwwroot/img/san_vip.jpg",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "img/san_vip.jpg",
       "AssetKind": "All",
@@ -796,10 +796,10 @@
       "OriginalItemSpec": "wwwroot/img/san_vip.jpg"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/js/site.js",
+      "Identity": "/workspaces/cnpm/wwwroot/js/site.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -815,10 +815,10 @@
       "OriginalItemSpec": "wwwroot/js/site.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -834,10 +834,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -853,10 +853,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -872,10 +872,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -891,10 +891,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -910,10 +910,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -929,10 +929,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -948,10 +948,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -967,10 +967,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -986,10 +986,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -1005,10 +1005,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -1024,10 +1024,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -1043,10 +1043,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1062,10 +1062,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1081,10 +1081,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1100,10 +1100,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1119,10 +1119,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1138,10 +1138,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1157,10 +1157,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1176,10 +1176,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1195,10 +1195,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1214,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1233,10 +1233,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1252,10 +1252,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1271,10 +1271,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1290,10 +1290,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1309,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1328,10 +1328,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1347,10 +1347,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -1366,10 +1366,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -1385,10 +1385,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -1404,10 +1404,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -1423,10 +1423,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1442,10 +1442,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1461,10 +1461,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1480,10 +1480,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1499,10 +1499,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1518,10 +1518,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1537,10 +1537,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1556,10 +1556,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1575,10 +1575,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1594,10 +1594,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1613,10 +1613,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1632,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1651,10 +1651,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/bootstrap/LICENSE",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/bootstrap/LICENSE",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1670,10 +1670,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/LICENSE"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1689,10 +1689,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1708,10 +1708,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -1727,10 +1727,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation/dist/additional-methods.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1746,10 +1746,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1765,10 +1765,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1784,10 +1784,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1803,10 +1803,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery-validation/LICENSE.md",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery-validation/LICENSE.md",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1822,10 +1822,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/dist/jquery.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery/dist/jquery.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1841,10 +1841,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery/dist/jquery.min.js",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1860,10 +1860,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery/dist/jquery.min.map",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1879,10 +1879,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Identity": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/lib/jquery/LICENSE.txt",
+      "Identity": "/workspaces/cnpm/wwwroot/lib/jquery/LICENSE.txt",
       "SourceId": "SanBong",
       "SourceType": "Discovered",
-      "ContentRoot": "/workspaces/cloud_github_codespaces/SanBong/wwwroot/",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
       "BasePath": "_content/SanBong",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
