@@ -28,6 +28,8 @@ public partial class AppDbContext : DbContext
     public DbSet<ThanhToan> ThanhToan { get; set; }
     public DbSet<DanhGia> DanhGia { get; set; }
     public DbSet<LienHe> LienHe { get; set; }
+    public DbSet<CaLam> CaLam { get; set; }
+    public DbSet<PhanCa> PhanCa { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -153,6 +155,24 @@ public partial class AppDbContext : DbContext
             entity.ToTable("LienHe");
             entity.Property(e => e.NgayGui).HasDefaultValueSql("CURRENT_TIMESTAMP");
             entity.Property(e => e.TrangThai).HasDefaultValue("Chưa xử lý");
+        });
+
+        // CaLam
+        modelBuilder.Entity<CaLam>(entity =>
+        {
+            entity.HasKey(e => e.MaCa);
+            entity.ToTable("CaLam");
+        });
+
+        // PhanCa
+        modelBuilder.Entity<PhanCa>(entity =>
+        {
+            entity.HasKey(e => e.MaPhanCa);
+            entity.ToTable("PhanCa");
+            entity.Property(e => e.MaNv).HasColumnName("MaNV");
+            entity.Property(e => e.TrangThai).HasDefaultValue("Đang chờ");
+            entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.PhanCas).HasForeignKey(d => d.MaNv);
+            entity.HasOne(d => d.MaCaNavigation).WithMany(p => p.PhanCas).HasForeignKey(d => d.MaCa);
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -50,6 +50,10 @@
                     <i class="fas fa-user-tie"></i>
                     <span>Nhân Viên</span>
                 </a>
+                <a href="@Url.Action("LichLamViec", "Admin")" class="menu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "LichLamViec" ? "active" : "")">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Lịch Làm Việc</span>
+                </a>
                 <a href="@Url.Action("DichVu", "Admin")" class="menu-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "DichVu" ? "active" : "")">
                     <i class="fas fa-box"></i>
                     <span>Dịch Vụ</span>

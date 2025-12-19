@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vS2hhY2hIYW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/cnpm/Views/Admin/LichLamViec.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vTGljaExhbVZpZWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/cnpm/Views/Admin/NhanVien.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vTmhhblZpZW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

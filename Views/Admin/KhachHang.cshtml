@@ -6,7 +6,12 @@
 }
 
 <div class="container-fluid">
-    <h2><i class="bi bi-people"></i> Quản Lý Khách Hàng</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2><i class="bi bi-people"></i> Quản Lý Khách Hàng</h2>
+        <button class="btn btn-primary" onclick="openAddModal()">
+            <i class="fas fa-plus"></i> Thêm khách hàng
+        </button>
+    </div>
     <hr />
 
     <div class="card">
@@ -23,12 +28,13 @@
                             <th>CCCD</th>
                             <th>Điểm Tích Lũy</th>
                             <th>Tài Khoản</th>
+                            <th>Thao Tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var kh in Model)
                         {
-                            <tr>
+                            <tr id="row-@kh.MaKh">
                                 <td>@kh.MaKh</td>
                                 <td>@kh.HoTen</td>
                                 <td>@kh.DienThoai</td>
@@ -43,17 +49,44 @@
                                     {
                                         <span>@kh.MaTkNavigation.TenDangNhap</span>
                                         <br />
-                                        <small class="text-muted">
+                                        <small id="status-@kh.MaKh">
                                             @if (kh.MaTkNavigation.TrangThai == 1)
                                             {
                                                 <span class="badge bg-success">Hoạt động</span>
                                             }
                                             else
                                             {
-                                                <span class="badge bg-danger">Khóa</span>
+                                                <span class="badge bg-danger">Đã khóa</span>
                                             }
                                         </small>
                                     }
+                                    else
+                                    {
+                                        <span class="text-muted">Chưa có</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn btn-outline-primary" onclick="openEditModal(@kh.MaKh)" title="Sửa">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        @if (kh.MaTkNavigation != null)
+                                        {
+                                            <button class="btn btn-outline-warning" onclick="toggleAccount(@kh.MaKh)" title="Khóa/Mở khóa tài khoản" id="btn-lock-@kh.MaKh">
+                                                @if (kh.MaTkNavigation.TrangThai == 1)
+                                                {
+                                                    <i class="fas fa-lock"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fas fa-unlock"></i>
+                                                }
+                                            </button>
+                                        }
+                                        <button class="btn btn-outline-danger" onclick="deleteKhachHang(@kh.MaKh, '@kh.HoTen')" title="Xóa">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -63,3 +96,241 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Thêm/Sửa Khách Hàng -->
+<div class="modal fade" id="khachHangModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Thêm Khách Hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="khachHangForm">
+                    <input type="hidden" id="maKh">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Họ tên *</label>
+                            <input type="text" class="form-control" id="hoTen" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Điện thoại *</label>
+                            <input type="text" class="form-control" id="dienThoai" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">CCCD</label>
+                            <input type="text" class="form-control" id="cccd">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="diaChi">
+                        </div>
+                        <div class="col-md-6" id="diemTichLuyGroup" style="display: none;">
+                            <label class="form-label">Điểm tích lũy</label>
+                            <input type="number" class="form-control" id="diemTichLuy" value="0">
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <h6 class="mb-3">Thông tin tài khoản <small class="text-muted" id="accountNote">(để trống nếu không tạo tài khoản)</small></h6>
+                    <div class="row g-3" id="accountFields">
+                        <div class="col-md-6">
+                            <label class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="tenDangNhap">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="matKhau">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="saveKhachHang()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xác nhận xóa -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Xác nhận xóa</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa khách hàng <strong id="deleteKhachHangName"></strong>?</p>
+                <p class="text-danger"><i class="fas fa-exclamation-triangle"></i> Tài khoản liên kết (nếu có) cũng sẽ bị xóa!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    let khachHangModal;
+    let deleteModal;
+    let isEditMode = false;
+    let deleteId = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        khachHangModal = new bootstrap.Modal(document.getElementById('khachHangModal'));
+        deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    });
+
+    function openAddModal() {
+        isEditMode = false;
+        document.getElementById('modalTitle').textContent = 'Thêm Khách Hàng';
+        document.getElementById('khachHangForm').reset();
+        document.getElementById('maKh').value = '';
+        document.getElementById('diemTichLuyGroup').style.display = 'none';
+        document.getElementById('accountFields').style.display = 'flex';
+        document.getElementById('accountNote').style.display = 'inline';
+        khachHangModal.show();
+    }
+
+    function openEditModal(id) {
+        isEditMode = true;
+        document.getElementById('modalTitle').textContent = 'Sửa Khách Hàng';
+        document.getElementById('diemTichLuyGroup').style.display = 'block';
+        document.getElementById('accountFields').style.display = 'none';
+        document.getElementById('accountNote').style.display = 'none';
+
+        // Load data
+        fetch(`/Admin/GetKhachHang?id=${id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('maKh').value = data.data.maKh;
+                    document.getElementById('hoTen').value = data.data.hoTen || '';
+                    document.getElementById('dienThoai').value = data.data.dienThoai || '';
+                    document.getElementById('email').value = data.data.email || '';
+                    document.getElementById('diaChi').value = data.data.diaChi || '';
+                    document.getElementById('cccd').value = data.data.cccd || '';
+                    document.getElementById('diemTichLuy').value = data.data.diemTichLuy || 0;
+                    khachHangModal.show();
+                } else {
+                    alert('Lỗi: ' + data.message);
+                }
+            });
+    }
+
+    function saveKhachHang() {
+        const hoTen = document.getElementById('hoTen').value.trim();
+        const dienThoai = document.getElementById('dienThoai').value.trim();
+
+        if (!hoTen || !dienThoai) {
+            alert('Vui lòng nhập họ tên và điện thoại');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('hoTen', hoTen);
+        formData.append('dienThoai', dienThoai);
+        formData.append('email', document.getElementById('email').value.trim());
+        formData.append('diaChi', document.getElementById('diaChi').value.trim());
+        formData.append('cccd', document.getElementById('cccd').value.trim());
+
+        let url;
+        if (isEditMode) {
+            url = '/Admin/EditKhachHang';
+            formData.append('maKh', document.getElementById('maKh').value);
+            formData.append('diemTichLuy', document.getElementById('diemTichLuy').value);
+        } else {
+            url = '/Admin/CreateKhachHang';
+            formData.append('tenDangNhap', document.getElementById('tenDangNhap').value.trim());
+            formData.append('matKhau', document.getElementById('matKhau').value);
+        }
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                khachHangModal.hide();
+                location.reload();
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        });
+    }
+
+    function deleteKhachHang(id, name) {
+        deleteId = id;
+        document.getElementById('deleteKhachHangName').textContent = name;
+        document.getElementById('confirmDeleteBtn').onclick = function() {
+            const formData = new FormData();
+            formData.append('id', deleteId);
+
+            fetch('/Admin/DeleteKhachHang', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    deleteModal.hide();
+                    document.getElementById('row-' + deleteId).remove();
+                } else {
+                    alert('Lỗi: ' + data.message);
+                }
+            });
+        };
+        deleteModal.show();
+    }
+
+    function toggleAccount(id) {
+        if (!confirm('Bạn có chắc chắn muốn khóa/mở khóa tài khoản này?')) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('id', id);
+
+        fetch('/Admin/ToggleKhachHangAccount', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                const statusEl = document.getElementById('status-' + id);
+                const btnEl = document.getElementById('btn-lock-' + id);
+                
+                if (data.trangThai === 1) {
+                    statusEl.innerHTML = '<span class="badge bg-success">Hoạt động</span>';
+                    btnEl.innerHTML = '<i class="fas fa-lock"></i>';
+                } else {
+                    statusEl.innerHTML = '<span class="badge bg-danger">Đã khóa</span>';
+                    btnEl.innerHTML = '<i class="fas fa-unlock"></i>';
+                }
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        });
+    }
+</script>
+@Html.AntiForgeryToken()
+}

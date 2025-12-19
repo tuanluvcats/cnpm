@@ -1,0 +1,408 @@
+@{
+    ViewData["Title"] = "Lịch Làm Việc - Admin";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/schedule.css">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+<div class="schedule-container">
+    <!-- Header -->
+    <div class="schedule-header">
+        <div>
+            <h1 class="schedule-title">Phân Ca Làm Việc</h1>
+            <p class="schedule-subtitle">Quản lý lịch làm việc của nhân viên</p>
+        </div>
+        <div class="header-actions">
+            <button onclick="openBulkAssignModal()" class="btn btn-outline-primary">
+                <i class="fas fa-users"></i>
+                Phân ca hàng loạt
+            </button>
+            <button onclick="openAssignModal()" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Thêm phân ca
+            </button>
+        </div>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="filter-card">
+        <div class="filter-grid">
+            <div class="filter-item">
+                <label class="filter-label">Chọn tuần</label>
+                <input type="week" id="weekPicker" class="form-control">
+            </div>
+            <div class="filter-item">
+                <label class="filter-label">Nhân viên</label>
+                <select id="employeeFilter" class="form-control">
+                    <option value="">Tất cả nhân viên</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label class="filter-label">Trạng thái</label>
+                <select id="statusFilter" class="form-control">
+                    <option value="">Tất cả</option>
+                    <option value="Đi làm">Đi làm</option>
+                    <option value="Đang chờ">Đang chờ</option>
+                    <option value="Hoàn thành">Hoàn thành</option>
+                    <option value="Nghỉ có phép">Nghỉ có phép</option>
+                    <option value="Vắng mặt">Vắng mặt</option>
+                </select>
+            </div>
+            <div class="filter-item filter-action">
+                <button onclick="loadSchedule()" class="btn btn-primary w-100">
+                    <i class="fas fa-sync-alt"></i>
+                    Tải lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Mode Toggle -->
+    <div class="view-card">
+        <div class="view-tabs">
+            <button class="view-mode-btn active" data-mode="weekly">
+                <i class="fas fa-calendar-week"></i>
+                Theo tuần
+            </button>
+            <button class="view-mode-btn" data-mode="employee">
+                <i class="fas fa-user"></i>
+                Theo nhân viên
+            </button>
+        </div>
+
+        <!-- Weekly View -->
+        <div id="weeklyView" class="view-content active">
+            <div class="week-navigation">
+                <button onclick="previousWeek()" class="btn btn-outline-secondary">
+                    <i class="fas fa-chevron-left"></i>
+                    Tuần trước
+                </button>
+                <h3 id="weekLabel" class="week-label">Tuần hiện tại</h3>
+                <button onclick="nextWeek()" class="btn btn-outline-secondary">
+                    Tuần sau
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th class="sticky-col">Nhân viên</th>
+                            <th id="day-0">T2</th>
+                            <th id="day-1">T3</th>
+                            <th id="day-2">T4</th>
+                            <th id="day-3">T5</th>
+                            <th id="day-4">T6</th>
+                            <th id="day-5">T7</th>
+                            <th id="day-6">CN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleTableBody">
+                        <tr>
+                            <td colspan="8" class="text-center py-4 text-muted">
+                                Đang tải dữ liệu...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Employee View -->
+        <div id="employeeView" class="view-content">
+            <div id="employeeScheduleList" class="employee-list">
+                <p class="text-center py-4 text-muted">
+                    Chọn chế độ xem theo nhân viên
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon bg-primary">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="stat-info">
+                <p class="stat-label">Tổng ca làm</p>
+                <p id="statTotalShifts" class="stat-value">0</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon bg-success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+                <p class="stat-label">Hoàn thành</p>
+                <p id="statCompleted" class="stat-value text-success">0</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon bg-warning">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-info">
+                <p class="stat-label">Đang chờ</p>
+                <p id="statPending" class="stat-value text-warning">0</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon bg-danger">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <div class="stat-info">
+                <p class="stat-label">Vắng mặt</p>
+                <p id="statAbsent" class="stat-value text-danger">0</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Assign Shift Modal -->
+<div class="modal fade" id="assignModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assignModalTitle">Phân Ca Làm Việc</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="assignForm">
+                    <input type="hidden" id="assignId">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nhân viên *</label>
+                            <select id="assignEmployee" required class="form-control">
+                                <option value="">Chọn nhân viên</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ca làm *</label>
+                            <select id="assignShift" required class="form-control">
+                                <option value="">Chọn ca</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày làm *</label>
+                            <input type="date" id="assignDate" required class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Trạng thái</label>
+                            <select id="assignStatus" class="form-control">
+                                <option value="Đi làm">Đi làm</option>
+                                <option value="Đang chờ" selected>Đang chờ</option>
+                                <option value="Hoàn thành">Hoàn thành</option>
+                                <option value="Nghỉ có phép">Nghỉ có phép</option>
+                                <option value="Vắng mặt">Vắng mặt</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" onclick="saveAssignment()" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Assign Modal -->
+<div class="modal fade" id="bulkAssignModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Phân Ca Hàng Loạt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label">Từ ngày</label>
+                        <input type="date" id="bulkStartDate" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Đến ngày</label>
+                        <input type="date" id="bulkEndDate" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Ca làm</label>
+                        <select id="bulkShift" class="form-control">
+                            <option value="">Chọn ca</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Chọn nhân viên</label>
+                    <div id="bulkEmployeeList" class="employee-checkbox-list">
+                        <!-- Employee checkboxes will be loaded here -->
+                    </div>
+                </div>
+
+                <button onclick="generateBulkAssignments()" class="btn btn-primary w-100 mb-3">
+                    <i class="fas fa-magic"></i>
+                    Tạo phân ca
+                </button>
+
+                <div id="bulkPreview" class="d-none">
+                    <h6 class="fw-bold mb-3">Xem trước phân ca</h6>
+                    <div class="bulk-preview-list">
+                        <div id="bulkPreviewList">
+                            <!-- Preview items -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" onclick="saveBulkAssignments()" id="bulkSaveBtn" class="btn btn-primary" disabled>
+                    Lưu tất cả
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shift Detail Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chi Tiết Ca Làm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="detailContent">
+                    <!-- Details will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" onclick="openEditStatusModal()" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Sửa trạng thái
+                </button>
+                <button type="button" onclick="deleteFromDetail()" class="btn btn-danger">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Status Modal -->
+<div class="modal fade" id="editStatusModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chỉnh Sửa Trạng Thái Ca Làm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editStatusAssignmentId">
+                
+                <!-- Employee Info (Read-only) -->
+                <div class="info-card mb-3">
+                    <div class="info-row">
+                        <span class="info-label">Nhân viên:</span>
+                        <span id="editStatusEmployeeName" class="info-value"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Ca làm:</span>
+                        <span id="editStatusShiftName" class="info-value"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Giờ làm:</span>
+                        <span id="editStatusShiftTime" class="info-value"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Ngày làm:</span>
+                        <span id="editStatusDate" class="info-value"></span>
+                    </div>
+                </div>
+
+                <!-- Status Selector -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Trạng thái ca làm *</label>
+                    <div class="status-options">
+                        <button type="button" class="status-option-btn" data-status="Đi làm" onclick="selectStatus('Đi làm')">
+                            <i class="fas fa-check-circle text-primary"></i>
+                            <span>Đi làm</span>
+                        </button>
+                        <button type="button" class="status-option-btn" data-status="Nghỉ có phép" onclick="selectStatus('Nghỉ có phép')">
+                            <i class="fas fa-calendar-check text-warning"></i>
+                            <span>Nghỉ có phép</span>
+                        </button>
+                        <button type="button" class="status-option-btn" data-status="Vắng mặt" onclick="selectStatus('Vắng mặt')">
+                            <i class="fas fa-times-circle text-danger"></i>
+                            <span>Vắng mặt</span>
+                        </button>
+                        <button type="button" class="status-option-btn" data-status="Hoàn thành" onclick="selectStatus('Hoàn thành')">
+                            <i class="fas fa-check-double text-success"></i>
+                            <span>Hoàn thành</span>
+                        </button>
+                    </div>
+                    <input type="hidden" id="editStatusValue" required>
+                </div>
+
+                <!-- Note (Optional) -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Ghi chú (tùy chọn)</label>
+                    <textarea id="editStatusNote" rows="3" class="form-control" placeholder="Nhập lý do thay đổi trạng thái (nếu có)..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" onclick="saveStatusUpdate()" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Manage Shifts Modal -->
+<div class="modal fade" id="manageShiftsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quản Lý Ca Làm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3">Thêm ca làm mới</h6>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <input type="text" id="newShiftName" class="form-control" placeholder="Tên ca (VD: Ca sáng)">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="time" id="newShiftStart" class="form-control" placeholder="Giờ bắt đầu">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="time" id="newShiftEnd" class="form-control" placeholder="Giờ kết thúc">
+                        </div>
+                        <div class="col-md-2">
+                            <button onclick="createShift()" class="btn btn-primary w-100">Thêm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold mb-3">Danh sách ca làm</h6>
+                <div id="shiftsList" class="shifts-list">
+                    <!-- Shifts will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/schedule.js"></script>
+}

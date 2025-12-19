@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets/css/reset.css"
     },
     {
+      "Id": "/workspaces/cnpm/wwwroot/css/schedule.css",
+      "PackagePath": "staticwebassets/css/schedule.css"
+    },
+    {
       "Id": "/workspaces/cnpm/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
@@ -159,6 +163,10 @@
     {
       "Id": "/workspaces/cnpm/wwwroot/img/san_vip.jpg",
       "PackagePath": "staticwebassets/img/san_vip.jpg"
+    },
+    {
+      "Id": "/workspaces/cnpm/wwwroot/js/schedule.js",
+      "PackagePath": "staticwebassets/js/schedule.js"
     },
     {
       "Id": "/workspaces/cnpm/wwwroot/js/site.js",

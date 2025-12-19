@@ -24,4 +24,6 @@ public partial class NhanVien
     public virtual TaiKhoan? MaTkNavigation { get; set; }
 
     public virtual ICollection<DatSan> DatSans { get; set; } = new List<DatSan>();
+
+    public virtual ICollection<PhanCa> PhanCas { get; set; } = new List<PhanCa>();
 }

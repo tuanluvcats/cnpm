@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IJCSXnsYaEb555j2Ic95O0Si4VLOo6k6bgXOPE9z6pI=",
+  "Hash": "vDgEYJXznZp0N2TFAXVNQu/AuMbqOID/ixi2JOegXJc=",
   "Source": "SanBong",
   "BasePath": "_content/SanBong",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/reset.css"
+    },
+    {
+      "Identity": "/workspaces/cnpm/wwwroot/css/schedule.css",
+      "SourceId": "SanBong",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
+      "BasePath": "_content/SanBong",
+      "RelativePath": "css/schedule.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/schedule.css"
     },
     {
       "Identity": "/workspaces/cnpm/wwwroot/css/site.css",
@@ -794,6 +813,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/img/san_vip.jpg"
+    },
+    {
+      "Identity": "/workspaces/cnpm/wwwroot/js/schedule.js",
+      "SourceId": "SanBong",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/cnpm/wwwroot/",
+      "BasePath": "_content/SanBong",
+      "RelativePath": "js/schedule.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/schedule.js"
     },
     {
       "Identity": "/workspaces/cnpm/wwwroot/js/site.js",

@@ -1,10 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using SanBong.Data;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        // Giữ nguyên tên property, không convert sang camelCase
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
 
 // Add Session support
 builder.Services.AddDistributedMemoryCache();

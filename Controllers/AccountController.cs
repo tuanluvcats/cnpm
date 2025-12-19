@@ -29,6 +29,13 @@ namespace SanBong.Controllers
             
             if (tk != null)
             {
+                // Kiểm tra tài khoản có bị khóa không
+                if (tk.TrangThai == 0)
+                {
+                    ViewBag.Error = "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên!";
+                    return View();
+                }
+
                 // Lưu Session
                 HttpContext.Session.SetString("MaTK", tk.MaTk.ToString());
                 HttpContext.Session.SetString("Role", tk.VaiTro);

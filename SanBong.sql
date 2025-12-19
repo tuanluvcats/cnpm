@@ -131,6 +131,25 @@ CREATE TABLE LienHe (
     TrangThai NVARCHAR(50) DEFAULT N'Chưa xử lý'
 );
 
+-- Bảng Ca làm việc
+CREATE TABLE CaLam (
+    MaCa INT IDENTITY(1,1) PRIMARY KEY,
+    TenCa NVARCHAR(100) NOT NULL,
+    GioBatDau TIME NOT NULL,
+    GioKetThuc TIME NOT NULL,
+    MoTa NVARCHAR(255)
+);
+
+-- Bảng Phân ca làm việc
+CREATE TABLE PhanCa (
+    MaPhanCa INT IDENTITY(1,1) PRIMARY KEY,
+    MaNV INT FOREIGN KEY REFERENCES NhanVien(MaNV),
+    MaCa INT FOREIGN KEY REFERENCES CaLam(MaCa),
+    NgayLam DATE NOT NULL,
+    TrangThai NVARCHAR(50) DEFAULT N'Đang chờ', -- Đi làm, Đang chờ, Hoàn thành, Nghỉ có phép, Vắng mặt
+    GhiChu NVARCHAR(500)
+);
+
 
 -- Tài khoản Admin
 INSERT INTO TaiKhoan (TenDangNhap, MatKhau, VaiTro)
@@ -188,6 +207,13 @@ INSERT INTO NhanVien (HoTen, NgaySinh, GioiTinh, DienThoai, Email, ChucVu, MaTK)
 VALUES 
 (N'Nguyễn Văn Nam', '1990-04-12', N'Nam', '0909000111', 'namnv@sanbong.vn', N'Quản lý', 3),
 (N'Trần Thị Hoa', '1995-08-25', N'Nữ', '0909111222', 'hoatt@sanbong.vn', N'Nhân viên lễ tân', 4);
+
+-- Ca làm việc
+INSERT INTO CaLam (TenCa, GioBatDau, GioKetThuc, MoTa)
+VALUES
+(N'Ca sáng', '06:00', '12:00', N'Ca làm việc buổi sáng'),
+(N'Ca chiều', '12:00', '18:00', N'Ca làm việc buổi chiều'),
+(N'Ca tối', '18:00', '23:00', N'Ca làm việc buổi tối');
 
 -- Khách hàng
 INSERT INTO KhachHang (HoTen, DiaChi, DienThoai, Email, CCCD, DiemTichLuy, MaTK)

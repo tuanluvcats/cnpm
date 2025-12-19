@@ -7,13 +7,19 @@ public static class DbInitializer
 {
     public static void Initialize(AppDbContext context)
     {
+        // Xóa database cũ và tạo lại để có schema mới với CaLam, PhanCa
+        context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 
-        // Check if data already exists
-        if (context.TaiKhoan.Any())
+        // Seed CaLam first
+        var caLams = new CaLam[]
         {
-            return; // DB has been seeded
-        }
+            new CaLam { TenCa = "Ca sáng", GioBatDau = new TimeSpan(6, 0, 0), GioKetThuc = new TimeSpan(12, 0, 0), MoTa = "Ca làm việc buổi sáng" },
+            new CaLam { TenCa = "Ca chiều", GioBatDau = new TimeSpan(12, 0, 0), GioKetThuc = new TimeSpan(18, 0, 0), MoTa = "Ca làm việc buổi chiều" },
+            new CaLam { TenCa = "Ca tối", GioBatDau = new TimeSpan(18, 0, 0), GioKetThuc = new TimeSpan(23, 0, 0), MoTa = "Ca làm việc buổi tối" }
+        };
+        context.CaLam.AddRange(caLams);
+        context.SaveChanges();
 
         // Seed TaiKhoan
         var taiKhoans = new TaiKhoan[]
@@ -144,6 +150,25 @@ public static class DbInitializer
             new DanhGia { MaDatSan = 1, MaKh = 1, DiemDanhGia = 4, NoiDung = "Sân tốt, giá hợp lý", NgayDanhGia = DateTime.Now }
         };
         context.DanhGia.AddRange(danhGias);
+        context.SaveChanges();
+
+        // Seed PhanCa - sample shift assignments for current week
+        var today = DateTime.Today;
+        var startOfWeek = today.AddDays(-(int)today.DayOfWeek + 1); // Monday
+        var phanCas = new PhanCa[]
+        {
+            // Nhân viên 1 - Nguyễn Văn Nam
+            new PhanCa { MaNv = 1, MaCa = 1, NgayLam = startOfWeek, TrangThai = "Đã xác nhận", GhiChu = null },
+            new PhanCa { MaNv = 1, MaCa = 2, NgayLam = startOfWeek.AddDays(1), TrangThai = "Đã xác nhận", GhiChu = null },
+            new PhanCa { MaNv = 1, MaCa = 1, NgayLam = startOfWeek.AddDays(2), TrangThai = "Đã xác nhận", GhiChu = null },
+            new PhanCa { MaNv = 1, MaCa = 3, NgayLam = startOfWeek.AddDays(4), TrangThai = "Đã xác nhận", GhiChu = null },
+            // Nhân viên 2 - Trần Thị Hoa
+            new PhanCa { MaNv = 2, MaCa = 2, NgayLam = startOfWeek, TrangThai = "Đã xác nhận", GhiChu = null },
+            new PhanCa { MaNv = 2, MaCa = 3, NgayLam = startOfWeek.AddDays(1), TrangThai = "Đã xác nhận", GhiChu = null },
+            new PhanCa { MaNv = 2, MaCa = 2, NgayLam = startOfWeek.AddDays(3), TrangThai = "Đã xác nhận", GhiChu = null },
+            new PhanCa { MaNv = 2, MaCa = 1, NgayLam = startOfWeek.AddDays(5), TrangThai = "Đã xác nhận", GhiChu = null }
+        };
+        context.PhanCa.AddRange(phanCas);
         context.SaveChanges();
     }
 }
