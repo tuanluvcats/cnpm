@@ -1,15 +1,23 @@
 @model global::SanBong.Models.DatSan
 
 @{
-    ViewData["Title"] = "Chi Tiết Đặt Sân";
+    ViewData["Title"] = "Hóa Đơn Tạm";
     var isAjax = Context.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
     Layout = isAjax ? null : "~/Views/Shared/_Layout.cshtml";
+    
+    // Xác định tiêu đề dựa trên trạng thái
+    var pageTitle = Model.TrangThai switch
+    {
+        "Đã xác nhận" or "Hoàn tất" => "Hóa Đơn",
+        "Đã cọc" => "Hóa Đơn Tạm (Đã Cọc)",
+        _ => "Hóa Đơn Tạm"
+    };
 }
 
 @if (!isAjax)
 {
     <div class="container mt-4">
-        <h2 class="text-center mb-4">Chi Tiết Đặt Sân</h2>
+        <h2 class="text-center mb-4">@pageTitle</h2>
     </div>
 }
 
@@ -129,9 +137,79 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="alert alert-info">
-                        <h4 class="text-end">Tổng Tiền: @Model.TongTien?.ToString("N0") VNĐ</h4>
+                    @{
+                        var tongTien = Model.TongTien ?? 0;
+                        var daThanhToan = (decimal)(ViewBag.TongDaThanhToan ?? 0);
+                        var conLai = (decimal)(ViewBag.ConLai ?? tongTien);
+                    }
+                    
+                    <!-- Chi tiết thanh toán -->
+                    <div class="card border-info">
+                        <div class="card-header bg-info text-white">
+                            <strong><i class="bi bi-receipt me-2"></i>Chi Tiết Thanh Toán</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tổng tiền:</span>
+                                <strong>@tongTien.ToString("N0") VNĐ</strong>
+                            </div>
+                            
+                            @if (daThanhToan > 0)
+                            {
+                                <div class="d-flex justify-content-between mb-2 text-success">
+                                    <span><i class="bi bi-check-circle me-1"></i>Đã thanh toán:</span>
+                                    <strong>@daThanhToan.ToString("N0") VNĐ</strong>
+                                </div>
+                            }
+                            
+                            @if (conLai > 0 && Model.TrangThai != "Đã xác nhận" && Model.TrangThai != "Hoàn tất")
+                            {
+                                <hr class="my-2">
+                                <div class="d-flex justify-content-between text-danger">
+                                    <span><strong>Còn lại:</strong></span>
+                                    <strong class="fs-5">@conLai.ToString("N0") VNĐ</strong>
+                                </div>
+                            }
+                            else if (Model.TrangThai == "Đã xác nhận" || Model.TrangThai == "Hoàn tất")
+                            {
+                                <hr class="my-2">
+                                <div class="d-flex justify-content-between text-success">
+                                    <span><strong>Trạng thái:</strong></span>
+                                    <strong><i class="bi bi-check-circle-fill me-1"></i>ĐÃ THANH TOÁN ĐỦ</strong>
+                                </div>
+                            }
+                        </div>
                     </div>
+                    
+                    @* Nút thanh toán - chỉ hiển thị khi chờ xác nhận (chưa thanh toán gì) *@
+                    @if (Model.TrangThai == "Chờ xác nhận")
+                    {
+                        <div class="d-grid gap-2 mt-3">
+                            <a asp-controller="Payment" asp-action="Index" asp-route-datSanId="@Model.MaDatSan" 
+                               class="btn btn-success btn-lg">
+                                <i class="bi bi-credit-card me-2"></i>Thanh Toán Ngay
+                            </a>
+                        </div>
+                    }
+                    else if (Model.TrangThai == "Đã cọc" && conLai > 0)
+                    {
+                        <div class="alert alert-warning mt-3">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Đã đặt cọc!</strong> Bạn có thể thanh toán phần còn lại online hoặc khi đến sân.
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a asp-controller="Payment" asp-action="PayRemaining" asp-route-datSanId="@Model.MaDatSan" 
+                               class="btn btn-outline-success">
+                                <i class="bi bi-credit-card me-2"></i>Thanh toán phần còn lại (@conLai.ToString("N0") VNĐ)
+                            </a>
+                        </div>
+                    }
+                    else if (Model.TrangThai == "Đã xác nhận" || Model.TrangThai == "Hoàn tất")
+                    {
+                        <div class="alert alert-success mt-3 text-center">
+                            <i class="bi bi-check-circle me-2"></i>Đã thanh toán đầy đủ
+                        </div>
+                    }
                 </div>
             </div>
 

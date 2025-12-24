@@ -94,6 +94,38 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9MaWNoU3VEYXRTYW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/cnpm/Views/Payment/DepositPayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9EZXBvc2l0UGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/Failed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9GYWlsZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9IaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/PayRemaining.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9QYXlSZW1haW5pbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/SandboxPayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9TYW5kYm94UGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9TdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/cnpm/Views/Payment/TransferPayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGF5bWVudC9UcmFuc2ZlclBheW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/cnpm/Views/SanBong/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2FuQm9uZy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

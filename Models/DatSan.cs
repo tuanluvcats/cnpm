@@ -40,4 +40,8 @@ public partial class DatSan
     public virtual ICollection<ThanhToan> ThanhToans { get; set; } = new List<ThanhToan>();
 
     public virtual ICollection<DanhGia> DanhGias { get; set; } = new List<DanhGia>();
+
+    public virtual ICollection<HoaDon> HoaDons { get; set; } = new List<HoaDon>();
+
+    public virtual ICollection<DonHang> DonHangs { get; set; } = new List<DonHang>();
 }

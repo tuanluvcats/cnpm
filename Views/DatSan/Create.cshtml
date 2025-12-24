@@ -571,7 +571,7 @@
                 if (selectedFieldData != null)
                 {
                     <text>
-                    $('#summaryFieldName').text('@selectedFieldData.TenSan');
+                    $('#summaryFieldName').text(@Html.Raw(Json.Serialize(selectedFieldData.TenSan)));
                     </text>
                 }
             }

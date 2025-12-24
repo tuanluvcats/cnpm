@@ -1,0 +1,160 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Thanh toán Online (Demo)";
+    var datSan = ViewBag.DatSan as global::SanBong.Models.DatSan;
+    var provider = ViewBag.Provider as string ?? "momo";
+    var providerName = provider == "momo" ? "MoMo" : "ZaloPay";
+    var providerColor = provider == "momo" ? "#a50064" : "#0068ff";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header text-white text-center" style="background-color: @providerColor;">
+                    <h4 class="mb-0">
+                        @if (provider == "momo") {
+                            <i class="fas fa-wallet me-2"></i>
+                        } else {
+                            <i class="fas fa-mobile-alt me-2"></i>
+                        }
+                        Thanh toán @providerName (Demo)
+                    </h4>
+                </div>
+                <div class="card-body text-center">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Đây là môi trường <strong>SANDBOX</strong> để demo tính năng thanh toán.
+                        <br>
+                        <small>Không có giao dịch thực sự nào được thực hiện.</small>
+                    </div>
+
+                    <!-- Demo Phone UI -->
+                    <div class="card mx-auto mb-4" style="max-width: 320px; border-radius: 25px; border: 3px solid #333;">
+                        <div class="card-body p-3">
+                            <!-- Phone Header -->
+                            <div class="d-flex justify-content-between align-items-center mb-3 text-muted small">
+                                <span>9:41</span>
+                                <div>
+                                    <i class="fas fa-signal me-1"></i>
+                                    <i class="fas fa-wifi me-1"></i>
+                                    <i class="fas fa-battery-full"></i>
+                                </div>
+                            </div>
+
+                            <!-- App Header -->
+                            <div class="p-3 rounded mb-3" style="background-color: @providerColor;">
+                                <h5 class="text-white mb-0">
+                                    @providerName Wallet
+                                </h5>
+                            </div>
+
+                            <!-- Transaction Info -->
+                            <div class="text-start mb-3">
+                                <p class="mb-1 text-muted small">Thanh toán cho:</p>
+                                <p class="fw-bold mb-2">Sân Bóng ABC</p>
+                                
+                                <p class="mb-1 text-muted small">Mã đơn hàng:</p>
+                                <p class="font-monospace mb-2">@(ViewBag.OrderId ?? "ORD" + DateTime.Now.Ticks)</p>
+                                
+                                <p class="mb-1 text-muted small">Số tiền:</p>
+                                <p class="fs-4 fw-bold" style="color: @providerColor;">
+                                    @((ViewBag.Amount as decimal? ?? 0m).ToString("N0")) ₫
+                                </p>
+                            </div>
+
+                            <hr>
+
+                            <!-- Payment Methods -->
+                            <div class="text-start mb-3">
+                                <p class="small text-muted mb-2">Nguồn thanh toán:</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="source" id="wallet" checked>
+                                    <label class="form-check-label" for="wallet">
+                                        <i class="fas fa-wallet me-1"></i> Ví @providerName - <strong>1,000,000 ₫</strong>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="source" id="bank">
+                                    <label class="form-check-label" for="bank">
+                                        <i class="fas fa-university me-1"></i> Ngân hàng liên kết
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Demo Buttons -->
+                            <div class="d-grid gap-2">
+                                <form asp-action="SandboxCallback" method="post">
+                                    <input type="hidden" name="datSanId" value="@datSan?.MaDatSan" />
+                                    <input type="hidden" name="provider" value="@provider" />
+                                    <input type="hidden" name="status" value="success" />
+                                    <button type="submit" class="btn w-100 text-white" style="background-color: @providerColor;">
+                                        <i class="fas fa-check-circle me-2"></i>Thanh toán thành công
+                                    </button>
+                                </form>
+                                
+                                <form asp-action="SandboxCallback" method="post">
+                                    <input type="hidden" name="datSanId" value="@datSan?.MaDatSan" />
+                                    <input type="hidden" name="provider" value="@provider" />
+                                    <input type="hidden" name="status" value="failed" />
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-times-circle me-2"></i>Giả lập thất bại
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Countdown timer -->
+                    <div class="alert alert-warning mb-3">
+                        <i class="fas fa-clock me-2"></i>
+                        Giao dịch hết hạn sau: <strong id="countdown">10:00</strong>
+                    </div>
+
+                    <a asp-action="Index" asp-route-datSanId="@datSan?.MaDatSan" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Chọn phương thức khác
+                    </a>
+
+                    <hr class="my-4">
+                    
+                    <div class="card bg-light">
+                        <div class="card-body text-start small">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Hướng dẫn Sandbox
+                            </h6>
+                            <ul class="mb-0 text-muted">
+                                <li class="mb-1">Nhấn "<strong>Thanh toán thành công</strong>" để giả lập giao dịch thành công</li>
+                                <li class="mb-1">Nhấn "<strong>Giả lập thất bại</strong>" để test trường hợp thanh toán thất bại</li>
+                                <li>Trong môi trường production, đây sẽ là trang redirect từ @providerName</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Countdown timer
+        let timeLeft = 10 * 60; // 10 phút
+        const countdownEl = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            countdownEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownEl.textContent = 'Hết hạn';
+                alert('Giao dịch đã hết hạn. Vui lòng thực hiện lại.');
+                window.location.href = '@Url.Action("Index", new { datSanId = datSan?.MaDatSan })';
+            }
+            
+            timeLeft--;
+        }, 1000);
+    </script>
+}

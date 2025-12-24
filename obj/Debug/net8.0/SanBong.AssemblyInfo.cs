@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SanBong")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01f7b98ec190341db11e294826613d26a7d50a6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ff9bbd6845dc2ae62ed15d9f0ef998d7572579a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SanBong")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SanBong")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

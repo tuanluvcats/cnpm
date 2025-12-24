@@ -78,6 +78,7 @@ namespace SanBong.Controllers
                 .Include(d => d.MaSanNavigation)
                 .Include(d => d.MaKhungGioNavigation)
                 .Include(d => d.MaNvNavigation)
+                .Include(d => d.ThanhToans) // Include thông tin thanh toán
                 .OrderByDescending(d => d.NgayDat)
                 .ToList();
 

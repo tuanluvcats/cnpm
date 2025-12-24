@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Thanh toán thành công";
+    var datSan = ViewBag.DatSan as global::SanBong.Models.DatSan;
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-body text-center py-5">
+                    <div class="mb-4">
+                        <div class="rounded-circle bg-success d-inline-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                            <i class="fas fa-check text-white" style="font-size: 50px;"></i>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-success mb-3">Thanh toán thành công!</h2>
+                    
+                    <p class="text-muted mb-4">
+                        Cảm ơn bạn đã đặt sân. Đơn đặt sân của bạn đã được xác nhận.
+                    </p>
+
+                    @if (datSan != null)
+                    {
+                        <div class="card bg-light mb-4">
+                            <div class="card-body text-start">
+                                <h6 class="text-muted mb-3">Thông tin đặt sân</h6>
+                                <div class="row mb-2">
+                                    <div class="col-5 text-muted">Mã đặt sân:</div>
+                                    <div class="col-7 fw-bold">#@datSan.MaDatSan</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-5 text-muted">Ngày sử dụng:</div>
+                                    <div class="col-7">@datSan.NgaySd.ToString("dd/MM/yyyy")</div>
+                                </div>
+                                @if (datSan.MaSanNavigation != null)
+                                {
+                                    <div class="row mb-2">
+                                        <div class="col-5 text-muted">Sân:</div>
+                                        <div class="col-7">@datSan.MaSanNavigation.TenSan</div>
+                                    </div>
+                                }
+                                @if (datSan.MaKhungGioNavigation != null)
+                                {
+                                    <div class="row mb-2">
+                                        <div class="col-5 text-muted">Khung giờ:</div>
+                                        <div class="col-7">@datSan.MaKhungGioNavigation.GioBatDau.ToString(@"hh\:mm") - @datSan.MaKhungGioNavigation.GioKetThuc.ToString(@"hh\:mm")</div>
+                                    </div>
+                                }
+                                <div class="row">
+                                    <div class="col-5 text-muted">Trạng thái:</div>
+                                    <div class="col-7">
+                                        <span class="badge bg-success">Đã thanh toán</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Home" asp-action="LichSuDatSan" class="btn btn-primary btn-lg">
+                            <i class="fas fa-history me-2"></i>Xem lịch sử đặt sân
+                        </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fas fa-home me-2"></i>Về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -26,4 +26,8 @@ public partial class KhachHang
     public virtual ICollection<DatSan> DatSans { get; set; } = new List<DatSan>();
 
     public virtual ICollection<DanhGia> DanhGias { get; set; } = new List<DanhGia>();
+
+    public virtual ICollection<HoaDon> HoaDons { get; set; } = new List<HoaDon>();
+
+    public virtual ICollection<DonHang> DonHangs { get; set; } = new List<DonHang>();
 }

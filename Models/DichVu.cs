@@ -20,4 +20,6 @@ public partial class DichVu
     public int? SoLuongTon { get; set; }
 
     public virtual ICollection<ChiTietDichVu> ChiTietDichVus { get; set; } = new List<ChiTietDichVu>();
+
+    public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();
 }

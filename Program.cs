@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SanBong.Data;
+using SanBong.Services;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,44 @@ builder.Services.AddSession(options =>
 // Register DbContext with SQLite
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register HttpClient
+builder.Services.AddHttpClient();
+
+// Register Payment Services
+var momoConfig = new MoMoConfig();
+builder.Configuration.GetSection("Payment:MoMo").Bind(momoConfig);
+builder.Services.AddSingleton(momoConfig);
+
+var zaloPayConfig = new ZaloPayConfig();
+builder.Configuration.GetSection("Payment:ZaloPay").Bind(zaloPayConfig);
+builder.Services.AddSingleton(zaloPayConfig);
+
+builder.Services.AddScoped<MoMoPaymentService>(sp =>
+{
+    var httpClient = sp.GetRequiredService<IHttpClientFactory>().CreateClient();
+    var logger = sp.GetRequiredService<ILogger<MoMoPaymentService>>();
+    return new MoMoPaymentService(momoConfig, httpClient, logger);
+});
+
+builder.Services.AddScoped<ZaloPayPaymentService>(sp =>
+{
+    var httpClient = sp.GetRequiredService<IHttpClientFactory>().CreateClient();
+    var logger = sp.GetRequiredService<ILogger<ZaloPayPaymentService>>();
+    return new ZaloPayPaymentService(zaloPayConfig, httpClient, logger);
+});
+
+builder.Services.AddScoped<PaymentServiceFactory>();
+builder.Services.AddScoped<PaymentManager>();
+
+// Register Sandbox Payment Service (for demo)
+builder.Services.AddScoped<SandboxPaymentService>();
+
+// Register Bank Transfer Service
+builder.Services.AddScoped<BankTransferService>();
+
+// Register Booking Lock Service
+builder.Services.AddScoped<BookingLockService>();
 
 var app = builder.Build();
 

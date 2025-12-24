@@ -139,8 +139,9 @@ namespace SanBong.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            TempData["Success"] = "Đặt sân thành công! Vui lòng chờ xác nhận.";
-            return RedirectToAction("Index");
+            TempData["Success"] = "Đặt sân thành công! Vui lòng tiến hành thanh toán.";
+            // Chuyển đến trang thanh toán ngay sau khi đặt sân
+            return RedirectToAction("Index", "Payment", new { datSanId = datSan.MaDatSan });
         }
 
         // POST: DatSan/Create
@@ -217,8 +218,9 @@ namespace SanBong.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            TempData["Success"] = "Đặt sân thành công! Vui lòng chờ xác nhận.";
-            return RedirectToAction("Details", new { id = datSan.MaDatSan });
+            TempData["Success"] = "Đặt sân thành công! Vui lòng tiến hành thanh toán.";
+            // Chuyển đến trang thanh toán ngay sau khi đặt sân
+            return RedirectToAction("Index", "Payment", new { datSanId = datSan.MaDatSan });
         }
 
         // GET: DatSan/Details/5
@@ -236,12 +238,21 @@ namespace SanBong.Controllers
                 .Include(d => d.MaNvNavigation)
                 .Include(d => d.ChiTietDichVus)
                     .ThenInclude(ct => ct.MaDvNavigation)
+                .Include(d => d.ThanhToans) // Include thông tin thanh toán
                 .FirstOrDefaultAsync(m => m.MaDatSan == id);
 
             if (datSan == null)
             {
                 return NotFound();
             }
+
+            // Tính tổng số tiền đã thanh toán
+            var tongDaThanhToan = datSan.ThanhToans?
+                .Where(t => t.TrangThai == "DaThanhToan")
+                .Sum(t => t.SoTien) ?? 0;
+            
+            ViewBag.TongDaThanhToan = tongDaThanhToan;
+            ViewBag.ConLai = (datSan.TongTien ?? 0) - tongDaThanhToan;
 
             return View(datSan);
         }

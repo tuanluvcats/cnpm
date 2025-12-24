@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Thanh toán thất bại";
+    var datSan = ViewBag.DatSan as global::SanBong.Models.DatSan;
+    var errorMessage = ViewBag.ErrorMessage as string ?? "Đã có lỗi xảy ra trong quá trình thanh toán.";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-body text-center py-5">
+                    <div class="mb-4">
+                        <div class="rounded-circle bg-danger d-inline-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                            <i class="fas fa-times text-white" style="font-size: 50px;"></i>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-danger mb-3">Thanh toán thất bại!</h2>
+                    
+                    <p class="text-muted mb-4">
+                        @errorMessage
+                    </p>
+
+                    <div class="alert alert-warning text-start">
+                        <h6><i class="fas fa-lightbulb me-2"></i>Bạn có thể thử:</h6>
+                        <ul class="mb-0">
+                            <li>Kiểm tra số dư tài khoản/ví</li>
+                            <li>Kiểm tra kết nối mạng</li>
+                            <li>Thử phương thức thanh toán khác</li>
+                            <li>Liên hệ hỗ trợ nếu vấn đề tiếp tục</li>
+                        </ul>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        @if (datSan != null)
+                        {
+                            <a asp-action="Index" asp-route-datSanId="@datSan.MaDatSan" class="btn btn-primary btn-lg">
+                                <i class="fas fa-redo me-2"></i>Thử lại
+                            </a>
+                        }
+                        <a asp-controller="DatSan" asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fas fa-calendar me-2"></i>Quay lại đặt sân
+                        </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fas fa-home me-2"></i>Về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

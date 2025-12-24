@@ -1,0 +1,252 @@
+@model global::SanBong.Models.DatSan
+@{
+    ViewData["Title"] = "Thanh toán đặt sân";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0"><i class="fas fa-credit-card me-2"></i>Thanh toán đặt sân</h4>
+                    <div class="text-white-50">
+                        <i class="fas fa-clock me-1"></i>
+                        <span id="countdown">15:00</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>@TempData["Success"]
+                        </div>
+                    }
+                    
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle me-2"></i>@TempData["Error"]
+                        </div>
+                    }
+                    
+                    <!-- Thông báo giữ chỗ -->
+                    <div class="alert alert-warning mb-4">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Lưu ý:</strong> Vui lòng hoàn tất thanh toán trong <strong>15 phút</strong>. 
+                        Sau thời gian này, đơn đặt sân có thể bị hủy.
+                    </div>
+                    
+                    <!-- Thông tin đặt sân -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Thông tin đặt sân</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Khách hàng:</strong> @Model.MaKhNavigation?.HoTen</p>
+                                    <p><strong>Số điện thoại:</strong> @Model.MaKhNavigation?.DienThoai</p>
+                                    <p><strong>Email:</strong> @Model.MaKhNavigation?.Email</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Sân:</strong> @Model.MaSanNavigation?.TenSan</p>
+                                    <p><strong>Ngày sử dụng:</strong> @Model.NgaySd.ToString("dd/MM/yyyy")</p>
+                                    <p><strong>Khung giờ:</strong> 
+                                        @Model.MaKhungGioNavigation?.GioBatDau.ToString(@"hh\:mm") - 
+                                        @Model.MaKhungGioNavigation?.GioKetThuc.ToString(@"hh\:mm")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chi tiết thanh toán -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Chi tiết thanh toán</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mô tả</th>
+                                        <th class="text-end">Số lượng</th>
+                                        <th class="text-end">Đơn giá</th>
+                                        <th class="text-end">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var giaTheoGio = Model.MaSanNavigation?.GiaTheoGio ?? 0;
+                                        var heSoGia = Model.MaKhungGioNavigation?.HeSoGia ?? 1;
+                                        var tienSan = giaTheoGio * heSoGia;
+                                    }
+                                    <tr>
+                                        <td>Thuê sân @Model.MaSanNavigation?.TenSan</td>
+                                        <td class="text-end">1</td>
+                                        <td class="text-end">@tienSan.ToString("N0") ₫</td>
+                                        <td class="text-end">@tienSan.ToString("N0") ₫</td>
+                                    </tr>
+                                    @{
+                                        decimal tongDichVu = 0;
+                                    }
+                                    @foreach (var dv in Model.ChiTietDichVus)
+                                    {
+                                        tongDichVu += dv.ThanhTien ?? 0;
+                                        <tr>
+                                            <td>@dv.MaDvNavigation?.TenDv</td>
+                                            <td class="text-end">@dv.SoLuong</td>
+                                            <td class="text-end">@dv.DonGia.ToString("N0") ₫</td>
+                                            <td class="text-end">@((dv.ThanhTien ?? 0).ToString("N0")) ₫</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    @{
+                                        var tongTien = Model.TongTien ?? 0;
+                                        var tienCoc = Math.Ceiling(tongTien * 0.3m / 1000) * 1000;
+                                    }
+                                    <tr class="table-light">
+                                        <td colspan="3" class="text-end"><strong>Tiền sân:</strong></td>
+                                        <td class="text-end"><strong>@tienSan.ToString("N0") ₫</strong></td>
+                                    </tr>
+                                    <tr class="table-light">
+                                        <td colspan="3" class="text-end"><strong>Tiền dịch vụ:</strong></td>
+                                        <td class="text-end"><strong>@tongDichVu.ToString("N0") ₫</strong></td>
+                                    </tr>
+                                    <tr class="table-primary">
+                                        <td colspan="3" class="text-end"><strong>TỔNG CỘNG:</strong></td>
+                                        <td class="text-end"><strong class="fs-5 text-primary">@tongTien.ToString("N0") ₫</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Chọn phương thức thanh toán -->
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Chọn phương thức thanh toán</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <!-- Tiền mặt (Cọc 30%) -->
+                                <div class="col-md-6">
+                                    <form asp-action="PayWithCash" method="post">
+                                        <input type="hidden" name="datSanId" value="@Model.MaDatSan" />
+                                        <button type="submit" class="btn btn-lg w-100 py-3 btn-success">
+                                            <i class="fas fa-money-bill-wave fa-2x mb-2 d-block"></i>
+                                            <strong>Tiền mặt</strong>
+                                            <br>
+                                            <small>Cọc trước 30%: @tienCoc.ToString("N0")₫</small>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- Chuyển khoản 100% -->
+                                <div class="col-md-6">
+                                    <form asp-action="PayWithTransfer" method="post">
+                                        <input type="hidden" name="datSanId" value="@Model.MaDatSan" />
+                                        <button type="submit" class="btn btn-lg w-100 py-3 btn-info text-white">
+                                            <i class="fas fa-university fa-2x mb-2 d-block"></i>
+                                            <strong>Chuyển khoản</strong>
+                                            <br>
+                                            <small>Thanh toán 100%: @tongTien.ToString("N0")₫</small>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+                            <h6 class="text-muted mb-3">Hoặc thanh toán online (Demo)</h6>
+                            
+                            <div class="row g-3">
+                                <!-- MoMo (Sandbox) -->
+                                <div class="col-md-6">
+                                    <form asp-action="PayOnline" method="post">
+                                        <input type="hidden" name="datSanId" value="@Model.MaDatSan" />
+                                        <input type="hidden" name="provider" value="MoMo" />
+                                        <button type="submit" class="btn btn-lg w-100 py-3" style="background-color: #ae2070; color: white;">
+                                            <i class="fas fa-wallet fa-lg me-2"></i>
+                                            MoMo (Demo)
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- ZaloPay (Sandbox) -->
+                                <div class="col-md-6">
+                                    <form asp-action="PayOnline" method="post">
+                                        <input type="hidden" name="datSanId" value="@Model.MaDatSan" />
+                                        <input type="hidden" name="provider" value="ZaloPay" />
+                                        <button type="submit" class="btn btn-lg w-100 py-3" style="background-color: #0068ff; color: white;">
+                                            <i class="fas fa-wallet fa-lg me-2"></i>
+                                            ZaloPay (Demo)
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="text-center text-muted">
+                                <small>
+                                    <i class="fas fa-shield-alt me-1"></i>
+                                    Thanh toán được bảo mật. QR Code sử dụng chuẩn VietQR.
+                                    <br>
+                                    <span class="text-warning"><i class="fas fa-info-circle me-1"></i>
+                                    MoMo/ZaloPay đang ở chế độ Demo để test.</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a asp-controller="DatSan" asp-action="Details" asp-route-id="@Model.MaDatSan" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Xem chi tiết đơn
+                        </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-danger ms-2">
+                            <i class="fas fa-times me-2"></i>Hủy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Countdown timer 15 phút
+        let timeLeft = 15 * 60;
+        const countdownEl = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            countdownEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Đổi màu khi gần hết giờ
+            if (timeLeft <= 120) {
+                countdownEl.classList.add('text-danger');
+                countdownEl.classList.remove('text-white-50');
+            }
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                alert('Thời gian thanh toán đã hết. Vui lòng đặt sân lại.');
+                window.location.href = '@Url.Action("Create", "DatSan")';
+            }
+            
+            timeLeft--;
+        }, 1000);
+        
+        // Hiển thị loading khi submit form
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function() {
+                const btn = this.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử lý...';
+            });
+        });
+    </script>
+}

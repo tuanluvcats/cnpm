@@ -1,0 +1,124 @@
+@model global::SanBong.Models.DatSan
+@{
+    ViewData["Title"] = "Thanh toán phần còn lại";
+    var daThanhToan = (decimal)(ViewBag.DaThanhToan ?? 0);
+    var conLai = (decimal)(ViewBag.ConLai ?? 0);
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0"><i class="fas fa-money-bill-wave me-2"></i>Thanh toán phần còn lại</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Thông tin đặt sân -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Thông tin đặt sân #@Model.MaDatSan</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Khách hàng:</strong> @Model.MaKhNavigation?.HoTen</p>
+                                    <p><strong>Số điện thoại:</strong> @Model.MaKhNavigation?.DienThoai</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Sân:</strong> @Model.MaSanNavigation?.TenSan</p>
+                                    <p><strong>Ngày sử dụng:</strong> @Model.NgaySd.ToString("dd/MM/yyyy")</p>
+                                    <p><strong>Khung giờ:</strong> 
+                                        @Model.MaKhungGioNavigation?.GioBatDau.ToString(@"hh\:mm") - 
+                                        @Model.MaKhungGioNavigation?.GioKetThuc.ToString(@"hh\:mm")
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chi tiết thanh toán -->
+                    <div class="card mb-4 border-info">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="fas fa-receipt me-2"></i>Chi tiết thanh toán</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tổng giá trị đơn hàng:</span>
+                                <strong>@Model.TongTien?.ToString("N0") ₫</strong>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 text-success">
+                                <span><i class="fas fa-check-circle me-1"></i>Đã thanh toán (cọc):</span>
+                                <strong>@daThanhToan.ToString("N0") ₫</strong>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between text-primary">
+                                <span><strong>Số tiền cần thanh toán:</strong></span>
+                                <strong class="fs-4">@conLai.ToString("N0") ₫</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chọn phương thức thanh toán -->
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Chọn phương thức thanh toán</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <!-- Chuyển khoản -->
+                                <div class="col-md-6">
+                                    <form asp-action="PayRemainingTransfer" method="post">
+                                        <input type="hidden" name="datSanId" value="@Model.MaDatSan" />
+                                        <button type="submit" class="btn btn-lg w-100 py-3 btn-info text-white">
+                                            <i class="fas fa-university fa-2x mb-2 d-block"></i>
+                                            <strong>Chuyển khoản</strong>
+                                            <br>
+                                            <small>QR Code VietQR</small>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- Thanh toán tại sân -->
+                                <div class="col-md-6">
+                                    <a asp-controller="DatSan" asp-action="Details" asp-route-id="@Model.MaDatSan" 
+                                       class="btn btn-lg w-100 py-3 btn-outline-secondary">
+                                        <i class="fas fa-store fa-2x mb-2 d-block"></i>
+                                        <strong>Thanh toán tại sân</strong>
+                                        <br>
+                                        <small>Tiền mặt khi đến</small>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Lưu ý:</strong> Nếu không thanh toán online, bạn cần thanh toán 
+                                <strong>@conLai.ToString("N0") ₫</strong> bằng tiền mặt khi đến sân.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a asp-controller="DatSan" asp-action="Details" asp-route-id="@Model.MaDatSan" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function() {
+                const btn = this.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử lý...';
+            });
+        });
+    </script>
+}

@@ -1,0 +1,130 @@
+@model global::SanBong.Services.BankTransferInfo
+@{
+    ViewData["Title"] = "Thanh toán chuyển khoản";
+    var datSan = ViewBag.DatSan as global::SanBong.Models.DatSan;
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white text-center">
+                    <h4 class="mb-0">
+                        <i class="fas fa-university me-2"></i>
+                        Thanh toán chuyển khoản
+                    </h4>
+                </div>
+                <div class="card-body text-center">
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle me-2"></i>
+                        Quét mã QR bằng ứng dụng ngân hàng để thanh toán <strong>100%</strong> giá trị
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="mb-4">
+                        <img src="@Model.QRCodeUrl" alt="QR Code thanh toán" class="img-fluid rounded shadow" style="max-width: 280px;">
+                    </div>
+
+                    <!-- Thông tin chuyển khoản -->
+                    <div class="card bg-light mb-4">
+                        <div class="card-body text-start">
+                            <div class="row mb-2">
+                                <div class="col-5 text-muted">Ngân hàng:</div>
+                                <div class="col-7 fw-bold">@Model.BankName</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5 text-muted">Số tài khoản:</div>
+                                <div class="col-7">
+                                    <span class="fw-bold font-monospace">@Model.AccountNo</span>
+                                    <button class="btn btn-sm btn-outline-secondary ms-2" onclick="copyToClipboard('@Model.AccountNo')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5 text-muted">Chủ tài khoản:</div>
+                                <div class="col-7 fw-bold">@Model.AccountName</div>
+                            </div>
+                            <hr>
+                            <div class="row mb-2">
+                                <div class="col-5 text-muted">Số tiền:</div>
+                                <div class="col-7 fw-bold text-primary fs-4">@Model.Amount.ToString("N0") ₫</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-5 text-muted">Nội dung CK:</div>
+                                <div class="col-7">
+                                    <code class="bg-warning text-dark p-1 rounded">@Model.Content</code>
+                                    <button class="btn btn-sm btn-outline-secondary ms-2" onclick="copyToClipboard('@Model.Content')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Countdown timer -->
+                    <div class="alert alert-warning mb-4">
+                        <i class="fas fa-clock me-2"></i>
+                        Thời gian còn lại: <strong id="countdown">15:00</strong>
+                        <br>
+                        <small class="text-muted">QR sẽ hết hạn và sân sẽ được mở khóa cho người khác đặt</small>
+                    </div>
+
+                    <!-- Nút xác nhận -->
+                    <form asp-action="ConfirmTransfer" method="post" class="mb-3">
+                        <input type="hidden" name="thanhToanId" value="@ViewBag.ThanhToanId" />
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Tôi đã chuyển khoản
+                        </button>
+                    </form>
+
+                    <a asp-action="Index" asp-route-datSanId="@datSan?.MaDatSan" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Chọn phương thức khác
+                    </a>
+
+                    <hr class="my-4">
+                    
+                    <div class="text-muted small">
+                        <p class="mb-1"><i class="fas fa-shield-alt me-1"></i> 
+                            QR Code sử dụng chuẩn VietQR - hỗ trợ tất cả ngân hàng Việt Nam.
+                        </p>
+                        <p class="mb-0">
+                            Sau khi chuyển khoản thành công, vui lòng nhấn "<strong>Tôi đã chuyển khoản</strong>".
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Đã sao chép: ' + text);
+            });
+        }
+
+        // Countdown timer
+        let timeLeft = 15 * 60; // 15 phút
+        const countdownEl = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            countdownEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownEl.textContent = 'Hết hạn';
+                alert('Mã QR đã hết hạn. Vui lòng tạo lại thanh toán.');
+                window.location.href = '@Url.Action("Index", new { datSanId = datSan?.MaDatSan })';
+            }
+            
+            timeLeft--;
+        }, 1000);
+    </script>
+}

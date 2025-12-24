@@ -26,4 +26,8 @@ public partial class NhanVien
     public virtual ICollection<DatSan> DatSans { get; set; } = new List<DatSan>();
 
     public virtual ICollection<PhanCa> PhanCas { get; set; } = new List<PhanCa>();
+
+    public virtual ICollection<HoaDon> HoaDons { get; set; } = new List<HoaDon>();
+
+    public virtual ICollection<DonHang> DonHangs { get; set; } = new List<DonHang>();
 }

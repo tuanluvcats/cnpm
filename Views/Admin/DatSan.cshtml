@@ -48,6 +48,7 @@
                             <th>Ngày SD</th>
                             <th>Khung Giờ</th>
                             <th>Tổng Tiền</th>
+                            <th>Thanh Toán</th>
                             <th>Trạng Thái</th>
                             <th>Nhân Viên</th>
                             <th>Hành Động</th>
@@ -74,6 +75,31 @@
                                     }
                                 </td>
                                 <td>@booking.TongTien?.ToString("N0") VNĐ</td>
+                                <td>
+                                    @{
+                                        var daThanhToan = booking.ThanhToans?.Where(t => t.TrangThai == "DaThanhToan").Sum(t => t.SoTien) ?? 0;
+                                        var conLai = (booking.TongTien ?? 0) - daThanhToan;
+                                    }
+                                    @if (daThanhToan > 0)
+                                    {
+                                        <span class="text-success">
+                                            <i class="bi bi-check-circle"></i> @daThanhToan.ToString("N0")
+                                        </span>
+                                        @if (conLai > 0)
+                                        {
+                                            <br>
+                                            <small class="text-danger">
+                                                <i class="bi bi-exclamation-circle"></i> Còn: @conLai.ToString("N0")
+                                            </small>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            <i class="bi bi-clock"></i> Chưa TT
+                                        </span>
+                                    }
+                                </td>
                                 <td>
                                     @if (booking.TrangThai == "Chờ xác nhận")
                                     {
