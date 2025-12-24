@@ -2,16 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SanBong.Data;
 using SanBong.Models;
+using SanBong.Services;
 
 namespace SanBong.Controllers
 {
     public class DatSanController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly HolidayDiscountService _holidayService;
 
-        public DatSanController(AppDbContext context)
+        public DatSanController(AppDbContext context, HolidayDiscountService holidayService)
         {
             _context = context;
+            _holidayService = holidayService;
         }
 
         // GET: DatSan
@@ -22,6 +25,7 @@ namespace SanBong.Controllers
                 .Include(d => d.MaSanNavigation)
                 .Include(d => d.MaKhungGioNavigation)
                 .Include(d => d.MaNvNavigation)
+                .Include(d => d.MaNgayLeNavigation)
                 .OrderByDescending(d => d.NgayDat)
                 .ToListAsync();
             
@@ -29,7 +33,7 @@ namespace SanBong.Controllers
         }
 
         // GET: DatSan/Create
-        public IActionResult Create(int? maSan, DateTime? ngaySd)
+        public async Task<IActionResult> Create(int? maSan, DateTime? ngaySd)
         {
             var maKh = HttpContext.Session.GetInt32("MaKH");
             if (maKh == null)
@@ -40,6 +44,13 @@ namespace SanBong.Controllers
             ViewBag.SanBongs = _context.SanBong.Where(s => s.TrangThai == "Hoạt động").ToList();
             ViewBag.KhungGios = _context.KhungGio.AsEnumerable().OrderBy(k => k.GioBatDau).ToList();
             ViewBag.DichVus = _context.DichVu.Where(d => d.SoLuongTon > 0).ToList();
+            
+            // Kiểm tra giảm giá ngày lễ cho ngày được chọn
+            if (ngaySd.HasValue)
+            {
+                var holidayInfo = await _holidayService.GetDiscountInfoAsync(ngaySd.Value);
+                ViewBag.HolidayDiscount = holidayInfo;
+            }
             
             // Pass pre-selected values
             ViewBag.PreSelectedMaSan = maSan;
@@ -59,6 +70,47 @@ namespace SanBong.Controllers
                 d.TrangThai != "Đã hủy");
 
             return Json(new { isBooked = daDat });
+        }
+
+        // API: Kiểm tra giảm giá ngày lễ
+        [HttpPost]
+        public async Task<IActionResult> CheckHolidayDiscount(DateTime ngaySd)
+        {
+            var holidayInfo = await _holidayService.GetDiscountInfoAsync(ngaySd);
+            if (holidayInfo != null)
+            {
+                return Json(new { 
+                    isHoliday = true, 
+                    holidayName = holidayInfo.HolidayName,
+                    discountPercent = holidayInfo.DiscountPercent,
+                    description = holidayInfo.Description
+                });
+            }
+            return Json(new { isHoliday = false });
+        }
+
+        // API: Tính giá với giảm giá ngày lễ
+        [HttpPost]
+        public async Task<IActionResult> CalculatePriceWithHoliday(int maSan, int maKhungGio, DateTime ngaySd)
+        {
+            var san = await _context.SanBong.FindAsync(maSan);
+            var khungGio = await _context.KhungGio.FindAsync(maKhungGio);
+            
+            if (san == null || khungGio == null)
+                return Json(new { success = false, message = "Không tìm thấy sân hoặc khung giờ" });
+
+            decimal giaGoc = san.GiaTheoGio * (khungGio.HeSoGia ?? 1.0m);
+            var (finalPrice, discountAmount, holiday) = await _holidayService.CalculateHolidayPriceAsync(giaGoc, ngaySd);
+
+            return Json(new { 
+                success = true,
+                giaGoc = giaGoc,
+                giaSauGiam = finalPrice,
+                soTienGiam = discountAmount,
+                isHoliday = holiday != null,
+                holidayName = holiday?.TenNgayLe,
+                discountPercent = holiday != null ? (int)((1 - holiday.HeSoGiamGia) * 100) : 0
+            });
         }
 
         // POST: Custom time booking
@@ -90,9 +142,19 @@ namespace SanBong.Controllers
                 return RedirectToAction("Create", new { maSan = maSan });
             }
 
-            // Tính tiền sân (giá theo giờ * số giờ)
+            // Tính tiền sân (giá gốc = giá theo giờ * số giờ)
             var san = await _context.SanBong.FindAsync(maSan);
-            decimal tongTien = san!.GiaTheoGio * soGio;
+            decimal giaGoc = san!.GiaTheoGio * soGio;
+
+            // Kiểm tra và áp dụng giảm giá ngày lễ
+            var (finalPrice, discountAmount, holiday) = await _holidayService.CalculateHolidayPriceAsync(giaGoc, ngaySd);
+            
+            string customNote = $" (Đặt tùy chọn: {soGio} giờ từ {gioCustom:hh\\:mm})";
+            string? ghiChuFinal = ghiChu + customNote;
+            if (holiday != null)
+            {
+                ghiChuFinal = $"🎉 Giảm giá {(int)((1 - holiday.HeSoGiamGia) * 100)}% nhân dịp {holiday.TenNgayLe} | " + ghiChuFinal;
+            }
 
             // Tạo đơn đặt sân (không có MaKhungGio vì là custom)
             var datSan = new DatSan
@@ -103,15 +165,19 @@ namespace SanBong.Controllers
                 NgayDat = DateTime.Now,
                 NgaySd = ngayGioSd,
                 ThoiGianDat = DateTime.Now,
-                TongTien = tongTien,
+                GiaGoc = giaGoc,
+                GiamGiaNgayLe = discountAmount,
+                TongTien = finalPrice,
                 TrangThai = "Chờ xác nhận",
-                GhiChu = ghiChu + $" (Đặt tùy chọn: {soGio} giờ từ {gioCustom:hh\\:mm})"
+                GhiChu = ghiChuFinal,
+                MaNgayLe = holiday?.MaNgayLe
             };
 
             _context.DatSan.Add(datSan);
             await _context.SaveChangesAsync();
 
             // Thêm dịch vụ nếu có
+            decimal tongTien = finalPrice;
             if (dichVuIds != null && soLuongs != null)
             {
                 for (int i = 0; i < dichVuIds.Count; i++)
@@ -168,10 +234,20 @@ namespace SanBong.Controllers
                 return RedirectToAction("Create", new { maSan = maSan, ngaySd = ngaySd });
             }
 
-            // Tính tiền sân
+            // Tính tiền sân (giá gốc)
             var san = await _context.SanBong.FindAsync(maSan);
             var khungGio = await _context.KhungGio.FindAsync(maKhungGio);
-            decimal tongTien = san!.GiaTheoGio * (khungGio?.HeSoGia ?? 1.0m);
+            decimal giaGoc = san!.GiaTheoGio * (khungGio?.HeSoGia ?? 1.0m);
+
+            // Kiểm tra và áp dụng giảm giá ngày lễ
+            var (finalPrice, discountAmount, holiday) = await _holidayService.CalculateHolidayPriceAsync(giaGoc, ngaySd);
+            
+            string? ghiChuFinal = ghiChu;
+            if (holiday != null)
+            {
+                ghiChuFinal = $"🎉 Giảm giá {(int)((1 - holiday.HeSoGiamGia) * 100)}% nhân dịp {holiday.TenNgayLe}" + 
+                              (string.IsNullOrEmpty(ghiChu) ? "" : $" | {ghiChu}");
+            }
 
             // Tạo đơn đặt sân
             var datSan = new DatSan
@@ -182,15 +258,19 @@ namespace SanBong.Controllers
                 NgayDat = DateTime.Now,
                 NgaySd = ngaySd,
                 ThoiGianDat = DateTime.Now,
-                TongTien = tongTien,
+                GiaGoc = giaGoc,
+                GiamGiaNgayLe = discountAmount,
+                TongTien = finalPrice,
                 TrangThai = "Chờ xác nhận",
-                GhiChu = ghiChu
+                GhiChu = ghiChuFinal,
+                MaNgayLe = holiday?.MaNgayLe
             };
 
             _context.DatSan.Add(datSan);
             await _context.SaveChangesAsync();
 
             // Thêm dịch vụ nếu có
+            decimal tongTien = finalPrice;
             if (dichVuIds != null && soLuongs != null)
             {
                 for (int i = 0; i < dichVuIds.Count; i++)
@@ -236,6 +316,7 @@ namespace SanBong.Controllers
                 .Include(d => d.MaSanNavigation)
                 .Include(d => d.MaKhungGioNavigation)
                 .Include(d => d.MaNvNavigation)
+                .Include(d => d.MaNgayLeNavigation) // Include thông tin ngày lễ
                 .Include(d => d.ChiTietDichVus)
                     .ThenInclude(ct => ct.MaDvNavigation)
                 .Include(d => d.ThanhToans) // Include thông tin thanh toán

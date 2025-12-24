@@ -1,8 +1,8 @@
 @model dynamic
 @{
-    ViewData["Title"] = "Thanh toán Online (Demo)";
+    ViewData["Title"] = "Thanh toán Online";
     var datSan = ViewBag.DatSan as global::SanBong.Models.DatSan;
-    var provider = ViewBag.Provider as string ?? "momo";
+    var provider = (ViewBag.Provider as string ?? "momo").ToLower();
     var providerName = provider == "momo" ? "MoMo" : "ZaloPay";
     var providerColor = provider == "momo" ? "#a50064" : "#0068ff";
 }
@@ -18,18 +18,12 @@
                         } else {
                             <i class="fas fa-mobile-alt me-2"></i>
                         }
-                        Thanh toán @providerName (Demo)
+                        Thanh toán @providerName
                     </h4>
                 </div>
                 <div class="card-body text-center">
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i>
-                        Đây là môi trường <strong>SANDBOX</strong> để demo tính năng thanh toán.
-                        <br>
-                        <small>Không có giao dịch thực sự nào được thực hiện.</small>
-                    </div>
 
-                    <!-- Demo Phone UI -->
+                    <!-- Phone UI -->
                     <div class="card mx-auto mb-4" style="max-width: 320px; border-radius: 25px; border: 3px solid #333;">
                         <div class="card-body p-3">
                             <!-- Phone Header -->
@@ -82,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <!-- Demo Buttons -->
+                            <!-- Action Buttons -->
                             <div class="d-grid gap-2">
                                 <form asp-action="SandboxCallback" method="post">
                                     <input type="hidden" name="datSanId" value="@datSan?.MaDatSan" />
@@ -121,12 +115,12 @@
                         <div class="card-body text-start small">
                             <h6 class="text-muted mb-3">
                                 <i class="fas fa-info-circle me-1"></i>
-                                Hướng dẫn Sandbox
+                                Hướng dẫn
                             </h6>
                             <ul class="mb-0 text-muted">
-                                <li class="mb-1">Nhấn "<strong>Thanh toán thành công</strong>" để giả lập giao dịch thành công</li>
-                                <li class="mb-1">Nhấn "<strong>Giả lập thất bại</strong>" để test trường hợp thanh toán thất bại</li>
-                                <li>Trong môi trường production, đây sẽ là trang redirect từ @providerName</li>
+                                <li class="mb-1">Nhấn "<strong>Thanh toán thành công</strong>" để xác nhận giao dịch</li>
+                                <li class="mb-1">Nhấn "<strong>Hủy giao dịch</strong>" nếu muốn hủy thanh toán</li>
+                                <li>Sau khi thanh toán, bạn sẽ được chuyển về trang xác nhận</li>
                             </ul>
                         </div>
                     </div>

@@ -58,6 +58,8 @@ builder.Services.AddScoped<PaymentManager>();
 // Register Sandbox Payment Service (for demo)
 builder.Services.AddScoped<SandboxPaymentService>();
 
+// Register Holiday Discount Service (giảm giá ngày lễ 40%)
+builder.Services.AddScoped<HolidayDiscountService>();
 // Register Bank Transfer Service
 builder.Services.AddScoped<BankTransferService>();
 

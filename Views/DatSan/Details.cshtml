@@ -138,6 +138,8 @@
 
                 <div class="col-md-6">
                     @{
+                        var giaGoc = Model.GiaGoc ?? Model.TongTien ?? 0;
+                        var giamGiaNgayLe = Model.GiamGiaNgayLe ?? 0;
                         var tongTien = Model.TongTien ?? 0;
                         var daThanhToan = (decimal)(ViewBag.TongDaThanhToan ?? 0);
                         var conLai = (decimal)(ViewBag.ConLai ?? tongTien);
@@ -149,6 +151,24 @@
                             <strong><i class="bi bi-receipt me-2"></i>Chi Tiết Thanh Toán</strong>
                         </div>
                         <div class="card-body">
+                            @if (giamGiaNgayLe > 0)
+                            {
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Giá gốc:</span>
+                                    <span style="text-decoration: line-through; color: #999;">@giaGoc.ToString("N0") VNĐ</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2 text-success">
+                                    <span>🎉 Giảm giá ngày lễ:</span>
+                                    <strong>-@giamGiaNgayLe.ToString("N0") VNĐ</strong>
+                                </div>
+                                @if (Model.MaNgayLeNavigation != null)
+                                {
+                                    <div class="alert alert-success py-2 mb-2" style="font-size: 0.85rem;">
+                                        <i class="bi bi-gift me-1"></i> @Model.MaNgayLeNavigation.TenNgayLe
+                                    </div>
+                                }
+                            }
+                            
                             <div class="d-flex justify-content-between mb-2">
                                 <span>Tổng tiền:</span>
                                 <strong>@tongTien.ToString("N0") VNĐ</strong>

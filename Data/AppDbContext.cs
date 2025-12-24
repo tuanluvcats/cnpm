@@ -44,6 +44,9 @@ public partial class AppDbContext : DbContext
     
     // Bảng mới: Khóa sân (lock khi đang thanh toán)
     public DbSet<KhoaSan> KhoaSan { get; set; }
+    
+    // Bảng mới: Ngày lễ Việt Nam (giảm giá 40%)
+    public DbSet<NgayLe> NgayLe { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -113,10 +116,13 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.NgaySd).HasColumnName("NgaySD");
             entity.Property(e => e.ThoiGianDat).HasDefaultValueSql("CURRENT_TIMESTAMP");
             entity.Property(e => e.TrangThai).HasDefaultValue("Chờ xác nhận");
+            entity.Property(e => e.GiaGoc).HasDefaultValue(0m);
+            entity.Property(e => e.GiamGiaNgayLe).HasDefaultValue(0m);
             entity.HasOne(d => d.MaKhNavigation).WithMany(p => p.DatSans).HasForeignKey(d => d.MaKh);
             entity.HasOne(d => d.MaSanNavigation).WithMany(p => p.DatSans).HasForeignKey(d => d.MaSan);
             entity.HasOne(d => d.MaKhungGioNavigation).WithMany(p => p.DatSans).HasForeignKey(d => d.MaKhungGio);
             entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.DatSans).HasForeignKey(d => d.MaNv);
+            entity.HasOne(d => d.MaNgayLeNavigation).WithMany(p => p.DatSans).HasForeignKey(d => d.MaNgayLe);
         });
 
         // DichVu
@@ -264,6 +270,16 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.MaKhungGioNavigation).WithMany().HasForeignKey(d => d.MaKhungGio);
             entity.HasOne(d => d.MaKhNavigation).WithMany().HasForeignKey(d => d.MaKh);
             entity.HasOne(d => d.MaDatSanNavigation).WithMany().HasForeignKey(d => d.MaDatSan);
+        });
+
+        // NgayLe - Bảng ngày lễ Việt Nam (giảm giá 40%)
+        modelBuilder.Entity<NgayLe>(entity =>
+        {
+            entity.HasKey(e => e.MaNgayLe);
+            entity.ToTable("NgayLe");
+            entity.Property(e => e.HeSoGiamGia).HasDefaultValue(0.6m);
+            entity.Property(e => e.LoaiLich).HasDefaultValue("DuongLich");
+            entity.Property(e => e.TrangThai).HasDefaultValue(1);
         });
 
         OnModelCreatingPartial(modelBuilder);

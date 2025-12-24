@@ -256,6 +256,20 @@
                     <i class="fas fa-calendar-alt"></i> Chọn Ngày Sử Dụng
                 </div>
                 <input type="date" class="date-picker" id="ngaySd" name="ngaySd" required min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                
+                <!-- Holiday Discount Banner -->
+                <div id="holidayBanner" class="alert alert-success" style="display: none; border-radius: 12px; background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%); border: none; color: white; margin-top: 15px;">
+                    <div style="display: flex; align-items: center;">
+                        <div style="font-size: 40px; margin-right: 20px;">🎉</div>
+                        <div>
+                            <h5 style="margin: 0; font-weight: 700;" id="holidayTitle">Khuyến mãi đặc biệt!</h5>
+                            <p style="margin: 5px 0 0 0;" id="holidayDescription">Giảm giá ngày lễ</p>
+                        </div>
+                        <div style="margin-left: auto; background: rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 8px;">
+                            <span style="font-size: 24px; font-weight: 700;" id="discountPercent">-40%</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Field Details Section -->
                 <div class="section-title mt-4">
@@ -708,6 +722,37 @@
                 }
             });
 
+            // Biến lưu thông tin giảm giá ngày lễ
+            let holidayDiscount = null;
+
+            // Kiểm tra ngày lễ khi chọn ngày
+            $('#ngaySd').change(function() {
+                const ngaySd = $(this).val();
+                if (ngaySd) {
+                    checkHolidayDiscount(ngaySd);
+                }
+            });
+
+            function checkHolidayDiscount(ngaySd) {
+                $.post('@Url.Action("CheckHolidayDiscount", "DatSan")', { ngaySd: ngaySd }, function(data) {
+                    if (data.isHoliday) {
+                        holidayDiscount = {
+                            name: data.holidayName,
+                            percent: data.discountPercent,
+                            description: data.description
+                        };
+                        $('#holidayTitle').text('🎊 ' + data.holidayName);
+                        $('#holidayDescription').text(data.description);
+                        $('#discountPercent').text('-' + data.discountPercent + '%');
+                        $('#holidayBanner').slideDown();
+                    } else {
+                        holidayDiscount = null;
+                        $('#holidayBanner').slideUp();
+                    }
+                    updateSummary();
+                });
+            }
+
             function updateSummary() {
                 let fieldTotal = 0;
                 
@@ -727,8 +772,31 @@
                     // Calculate for predefined slots
                     fieldTotal = fieldPrice * multiplier;
                 }
+
+                // Áp dụng giảm giá ngày lễ
+                let discountAmount = 0;
+                if (holidayDiscount) {
+                    discountAmount = fieldTotal * (holidayDiscount.percent / 100);
+                    fieldTotal = fieldTotal - discountAmount;
+                }
                 
                 $('#summaryFieldPrice').text(fieldTotal.toLocaleString('vi-VN') + ' VNĐ');
+                
+                // Hiển thị thông tin giảm giá
+                if (holidayDiscount && discountAmount > 0) {
+                    if ($('#summaryDiscountRow').length === 0) {
+                        $('#summaryFieldPrice').parent().after(
+                            '<div class="summary-row" id="summaryDiscountRow" style="color: #28a745;">' +
+                            '<span><i class="fas fa-gift"></i> Giảm giá ' + holidayDiscount.name + ' (-' + holidayDiscount.percent + '%)</span>' +
+                            '<span id="summaryDiscount">-' + discountAmount.toLocaleString('vi-VN') + ' VNĐ</span>' +
+                            '</div>'
+                        );
+                    } else {
+                        $('#summaryDiscount').text('-' + discountAmount.toLocaleString('vi-VN') + ' VNĐ');
+                    }
+                } else {
+                    $('#summaryDiscountRow').remove();
+                }
 
                 // Calculate service price
                 let serviceTotal = 0;
@@ -797,6 +865,11 @@
 
             // Initial summary update
             updateSummary();
-        });
+            
+            // Kiểm tra ngày lễ nếu đã có ngày được chọn sẵn
+            const preSelectedDate = $('#ngaySd').val();
+            if (preSelectedDate) {
+                checkHolidayDiscount(preSelectedDate);
+            }        });
     </script>
 }

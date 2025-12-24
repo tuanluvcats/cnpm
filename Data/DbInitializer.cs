@@ -170,5 +170,42 @@ public static class DbInitializer
         };
         context.PhanCa.AddRange(phanCas);
         context.SaveChanges();
-    }
+
+        // Seed NgayLe - Ngày lễ Việt Nam (giảm giá 40%)
+        var ngayLes = new NgayLe[]
+        {
+            // Ngày lễ dương lịch cố định hàng năm
+            new NgayLe { TenNgayLe = "Tết Dương lịch", NgayBatDau = "01-01", NgayKetThuc = "01-01", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày đầu năm mới Dương lịch", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Lễ Valentine", NgayBatDau = "02-14", NgayKetThuc = "02-14", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày lễ tình nhân", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Quốc tế Phụ nữ", NgayBatDau = "03-08", NgayKetThuc = "03-08", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Quốc tế Phụ nữ 8/3", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Giải phóng miền Nam", NgayBatDau = "04-30", NgayKetThuc = "04-30", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Giải phóng miền Nam 30/4", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Quốc tế Lao động", NgayBatDau = "05-01", NgayKetThuc = "05-01", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Quốc tế Lao động 1/5", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Quốc tế Thiếu nhi", NgayBatDau = "06-01", NgayKetThuc = "06-01", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Quốc tế Thiếu nhi 1/6", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Gia đình Việt Nam", NgayBatDau = "06-28", NgayKetThuc = "06-28", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Gia đình Việt Nam 28/6", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Quốc khánh", NgayBatDau = "09-02", NgayKetThuc = "09-02", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Quốc khánh Việt Nam 2/9", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Phụ nữ Việt Nam", NgayBatDau = "10-20", NgayKetThuc = "10-20", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Phụ nữ Việt Nam 20/10", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Lễ Halloween", NgayBatDau = "10-31", NgayKetThuc = "10-31", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Lễ hội Halloween", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Nhà giáo Việt Nam", NgayBatDau = "11-20", NgayKetThuc = "11-20", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày Nhà giáo Việt Nam 20/11", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Ngày Quân đội Nhân dân", NgayBatDau = "12-22", NgayKetThuc = "12-22", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Ngày thành lập Quân đội Nhân dân Việt Nam", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Lễ Giáng sinh", NgayBatDau = "12-24", NgayKetThuc = "12-25", LoaiLich = "DuongLich", HeSoGiamGia = 0.6m, MoTa = "Lễ Giáng sinh - Christmas Eve và Christmas", TrangThai = 1 },
+            
+            // Ngày lễ âm lịch (cần cập nhật hàng năm)
+            // Giỗ Tổ Hùng Vương (10/3 Âm lịch)
+            new NgayLe { TenNgayLe = "Giỗ Tổ Hùng Vương 2025", NgayBatDau = "2025-04-07", NgayKetThuc = "2025-04-07", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Giỗ Tổ Hùng Vương - 10/3 Âm lịch năm 2025", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Giỗ Tổ Hùng Vương 2026", NgayBatDau = "2026-04-26", NgayKetThuc = "2026-04-26", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Giỗ Tổ Hùng Vương - 10/3 Âm lịch năm 2026", TrangThai = 1 },
+            
+            // Tết Nguyên Đán
+            new NgayLe { TenNgayLe = "Tết Nguyên Đán 2025", NgayBatDau = "2025-01-28", NgayKetThuc = "2025-02-04", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Tết Nguyên Đán Ất Tỵ 2025 (30 Tết - Mùng 7)", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Tết Nguyên Đán 2026", NgayBatDau = "2026-02-16", NgayKetThuc = "2026-02-23", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Tết Nguyên Đán Bính Ngọ 2026 (30 Tết - Mùng 7)", TrangThai = 1 },
+            
+            // Tết Trung Thu (15/8 Âm lịch)
+            new NgayLe { TenNgayLe = "Tết Trung Thu 2025", NgayBatDau = "2025-10-06", NgayKetThuc = "2025-10-06", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Tết Trung Thu - Rằm tháng 8 Âm lịch 2025", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Tết Trung Thu 2026", NgayBatDau = "2026-09-25", NgayKetThuc = "2026-09-25", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Tết Trung Thu - Rằm tháng 8 Âm lịch 2026", TrangThai = 1 },
+            
+            // Lễ Vu Lan (15/7 Âm lịch)
+            new NgayLe { TenNgayLe = "Lễ Vu Lan 2025", NgayBatDau = "2025-09-06", NgayKetThuc = "2025-09-06", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Lễ Vu Lan Báo Hiếu - Rằm tháng 7 Âm lịch 2025", TrangThai = 1 },
+            new NgayLe { TenNgayLe = "Lễ Vu Lan 2026", NgayBatDau = "2026-08-27", NgayKetThuc = "2026-08-27", LoaiLich = "AmLich", HeSoGiamGia = 0.6m, MoTa = "Lễ Vu Lan Báo Hiếu - Rằm tháng 7 Âm lịch 2026", TrangThai = 1 }
+        };
+        context.NgayLe.AddRange(ngayLes);
+        context.SaveChanges();    }
 }
